@@ -45,132 +45,126 @@ const Register = () => {
   });
 
   return (
-    <Box
+    <Grid
+      container
       component="main"
       sx={{
         minHeight: "calc(100vh - 64px)",
         width: "100%",
       }}
     >
-      <Grid container sx={{ minHeight: "100%" }}>
-        <Grid item xs={12} sm={6} md={8}></Grid>
-        <Grid item xs={12} sm={6} md={4} sx={{ minHeight: "100%" }}>
-          <Paper
-            elevation={1}
-            component="form"
-            onSubmit={handleSubmit}
-            sx={{
-              height: "100%",
-              padding: 3,
-              borderRadius: 0,
-              boxShadow: "none",
-            }}
-          >
-            <Typography variant="h4" component="h1" marginBottom={4}>
-              Register
-            </Typography>
-            <Stack spacing={2}>
-              <TextField
-                size="small"
-                variant="standard"
-                label="First Name"
-                name="firstName"
-                type="text"
-                value={values.firstName}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={errors.firstName && touched.firstName}
-                helperText={
-                  errors.firstName && touched.firstName
-                    ? errors.firstName
-                    : null
-                }
-              />
-              <TextField
-                size="small"
-                variant="standard"
-                label="Last Name"
-                name="lastName"
-                type="text"
-                value={values.lastName}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={errors.lastName && touched.lastName}
-                helperText={
-                  errors.lastName && touched.lastName ? errors.lastName : null
-                }
-              />
-              <TextField
-                size="small"
-                variant="standard"
-                label="Email"
-                name="email"
-                type="email"
-                value={values.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={errors.email && touched.email}
-                helperText={errors.email && touched.email ? errors.email : null}
-              />
-              <TextField
-                size="small"
-                variant="standard"
-                label="Password"
-                name="password"
-                type="password"
-                value={values.password}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={errors.password && touched.password}
-                helperText={
-                  errors.password && touched.password ? errors.password : null
-                }
-              />
-              <TextField
-                size="small"
-                variant="standard"
-                label="Confirm Password"
-                name="confirmPassword"
-                type="password"
-                value={values.confirmPassword}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={errors.confirmPassword && touched.confirmPassword}
-                helperText={
-                  errors.confirmPassword && touched.confirmPassword
-                    ? errors.confirmPassword
-                    : null
-                }
-              />
-              <Stack spacing={1} paddingTop={2}>
-                <Typography>
-                  Already have an account?{" "}
-                  <MuiLink to="/login" component={Link}>
-                    Logn In
-                  </MuiLink>
-                </Typography>
-                <Button
-                  disabled={isSubmitting}
-                  type="submit"
-                  variant="contained"
-                >
-                  Register
-                </Button>
-                <Stack direction="row" spacing={2} alignItems="center">
-                  <Typography>Create an account with -</Typography>
-                  <IconButton>
-                    <GoogleIcon color="warning" />
-                  </IconButton>
-                  <IconButton>
-                    <FacebookIcon color="primary" />
-                  </IconButton>
-                </Stack>
+      <Grid item xs={12} sm={6} md={8}></Grid>
+      <Grid item xs={12} sm={6} md={4}>
+        <Paper
+          elevation={1}
+          component="form"
+          onSubmit={handleSubmit}
+          sx={{
+            minHeight: "calc(100vh - 64px)",
+            maxHeight: "fit-content",
+            padding: 3,
+            borderRadius: 0,
+            boxShadow: "none",
+          }}
+        >
+          <Typography variant="h4" component="h1" marginBottom={4}>
+            Register
+          </Typography>
+          <Stack spacing={2}>
+            <TextField
+              size="small"
+              variant="standard"
+              label="First Name"
+              name="firstName"
+              type="text"
+              value={values.firstName}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={errors.firstName && touched.firstName}
+              helperText={
+                errors.firstName && touched.firstName ? errors.firstName : null
+              }
+            />
+            <TextField
+              size="small"
+              variant="standard"
+              label="Last Name"
+              name="lastName"
+              type="text"
+              value={values.lastName}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={errors.lastName && touched.lastName}
+              helperText={
+                errors.lastName && touched.lastName ? errors.lastName : null
+              }
+            />
+            <TextField
+              size="small"
+              variant="standard"
+              label="Email"
+              name="email"
+              type="email"
+              value={values.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={errors.email && touched.email}
+              helperText={errors.email && touched.email ? errors.email : null}
+            />
+            <TextField
+              size="small"
+              variant="standard"
+              label="Password"
+              name="password"
+              type="password"
+              value={values.password}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={errors.password && touched.password}
+              helperText={
+                errors.password && touched.password ? errors.password : null
+              }
+            />
+            <TextField
+              size="small"
+              variant="standard"
+              label="Confirm Password"
+              name="confirmPassword"
+              type="password"
+              value={values.confirmPassword}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={errors.confirmPassword && touched.confirmPassword}
+              helperText={
+                errors.confirmPassword && touched.confirmPassword
+                  ? errors.confirmPassword
+                  : null
+              }
+            />
+            <Stack spacing={1} paddingTop={2}>
+              <Typography>
+                Already have an account?{" "}
+                <MuiLink to="/login" component={Link}>
+                  Logn In
+                </MuiLink>
+              </Typography>
+              <Button disabled={isSubmitting} type="submit" variant="contained">
+                Register
+              </Button>
+              <Stack direction="row" spacing={2} alignItems="center">
+                <Typography>Create an account with -</Typography>
+                <IconButton>
+                  <GoogleIcon color="warning" />
+                </IconButton>
+                <IconButton>
+                  <FacebookIcon color="primary" />
+                </IconButton>
               </Stack>
             </Stack>
-          </Paper>
-        </Grid>
+          </Stack>
+        </Paper>
       </Grid>
-    </Box>
+    </Grid>
   );
 };
 

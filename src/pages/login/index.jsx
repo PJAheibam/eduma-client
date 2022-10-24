@@ -27,6 +27,8 @@ const Login = () => {
           component="form"
           // onSubmit={handleSubmit}
           sx={{
+            minHeight: "calc(100vh - 64px)",
+            maxHeight: "fit-content",
             padding: 3,
             borderRadius: 0,
             boxShadow: "none",
@@ -43,13 +45,13 @@ const Login = () => {
           <Stack marginTop={3} spacing={2} direction="row" alignItems="center">
             <Typography>Login with </Typography>
             <IconButton>
-              <GoogleIcon />
+              <GoogleIcon color="warning" />
             </IconButton>
             <IconButton>
-              <FacebookIcon />
+              <FacebookIcon color="primary" />
             </IconButton>
           </Stack>
-          <Typography>
+          <Typography marginTop={3} color="text.secondary">
             Don't have any account?{" "}
             <MuiLink to="/register" component={Link}>
               Register here
