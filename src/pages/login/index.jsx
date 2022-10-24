@@ -40,10 +40,12 @@ const Login = () => {
           <Stack spacing={2}>
             <InputField name="email" label="Email" />
             <InputField name="password" label="Password" type="password" />
-            <Button variant="contained">Login</Button>
+            <Button type="submit" variant="contained">
+              Login
+            </Button>
           </Stack>
           <Stack marginTop={3} spacing={2} direction="row" alignItems="center">
-            <Typography>Login with </Typography>
+            <Typography>Login with</Typography>
             <IconButton>
               <GoogleIcon color="warning" />
             </IconButton>

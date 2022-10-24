@@ -141,6 +141,9 @@ const Register = () => {
                   : null
               }
             />
+            <Button disabled={isSubmitting} type="submit" variant="contained">
+              Register
+            </Button>
             <Stack spacing={1} paddingTop={2}>
               <Typography>
                 Already have an account?{" "}
@@ -148,11 +151,8 @@ const Register = () => {
                   Logn In
                 </MuiLink>
               </Typography>
-              <Button disabled={isSubmitting} type="submit" variant="contained">
-                Register
-              </Button>
               <Stack direction="row" spacing={2} alignItems="center">
-                <Typography>Create an account with -</Typography>
+                <Typography>Create an account with</Typography>
                 <IconButton>
                   <GoogleIcon color="warning" />
                 </IconButton>
