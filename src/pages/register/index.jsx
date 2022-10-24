@@ -22,7 +22,7 @@ const initialFormValue = {
   lastName: "",
   email: "",
   password: "",
-  confirmPassowd: "",
+  confirmPassword: "",
 };
 
 const onSubmit = (values, action) => {
@@ -43,6 +43,7 @@ const Register = () => {
     validationSchema: registrationSchema,
     onSubmit,
   });
+
   return (
     <Box
       component="main"
@@ -51,9 +52,9 @@ const Register = () => {
         width: "100%",
       }}
     >
-      <Grid container sx={{ height: "100%" }}>
-        <Grid xs={12} sm={6} md={8}></Grid>
-        <Grid xs={12} sm={6} md={4} sx={{ height: "100%" }}>
+      <Grid container sx={{ minHeight: "100%" }}>
+        <Grid item xs={12} sm={6} md={8}></Grid>
+        <Grid item xs={12} sm={6} md={4} sx={{ minHeight: "100%" }}>
           <Paper
             elevation={1}
             component="form"
@@ -131,13 +132,13 @@ const Register = () => {
                 label="Confirm Password"
                 name="confirmPassword"
                 type="password"
-                value={values.confirmPassowd}
+                value={values.confirmPassword}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                error={errors.password && touched.confirmPassowd}
+                error={errors.confirmPassword && touched.confirmPassword}
                 helperText={
-                  errors.confirmPassowd && touched.confirmPassowd
-                    ? errors.confirmPassowd
+                  errors.confirmPassword && touched.confirmPassword
+                    ? errors.confirmPassword
                     : null
                 }
               />

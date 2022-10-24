@@ -4,19 +4,17 @@ import {
   Toolbar,
   Tabs,
   Tab,
-  IconButton,
   Button,
   Typography,
   Stack,
 } from "@mui/material";
 import EastIcon from "@mui/icons-material/East";
-import { useLocation, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useMatchedRoute } from "../../hooks/use-matched-route";
 
 const Navbar = () => {
-  const { pathname } = useLocation();
   const currentPath = useMatchedRoute(["/", "/courses", "/faq"]);
-  console.log("pathname", pathname);
+
   return (
     <AppBar position="static">
       <Toolbar
