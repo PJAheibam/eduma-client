@@ -1,7 +1,8 @@
+import { Paper } from "@mui/material";
 import React from "react";
 
 const Footer = () => {
-  return <div>Footer</div>;
+  return <Paper>Footer</Paper>;
 };
 
 export default Footer;

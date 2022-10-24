@@ -2,6 +2,8 @@ import { Routes as RouteWrapper, Route } from "react-router-dom";
 import Root from "../layouts/Root";
 import Home from "../pages/home";
 import Login from "../pages/login";
+import PageNotFound from "../pages/page-not-found";
+import Register from "../pages/register";
 
 const Routes = () => {
   return (
@@ -10,6 +12,8 @@ const Routes = () => {
         <Route path="/" element={<Root />}>
           <Route path="" element={<Home />} />
           <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+          <Route path="*" element={<PageNotFound />} />
         </Route>
       </RouteWrapper>
     </>
