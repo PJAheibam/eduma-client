@@ -12,7 +12,7 @@ import {
 //icons
 import GoogleIcon from "@mui/icons-material/Google";
 import FacebookIcon from "@mui/icons-material/Facebook";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { loginSchema } from "../../schemas/login-form";
 import { useAuth } from "../../context/AuthContext";
@@ -23,6 +23,9 @@ const InputField = (props) => {
   );
 };
 const Login = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
   const { handleLogin, setLoading } = useAuth();
   const {
     values,
@@ -45,6 +48,7 @@ const Login = () => {
     handleLogin(values.email, values.password)
       .then((res) => {
         setLoading(false);
+        navigate(from, { replace: true });
         // console.info(res);
       })
       .catch((error) => {
