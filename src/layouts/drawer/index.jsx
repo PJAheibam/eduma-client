@@ -1,6 +1,7 @@
 import React from "react";
 import { Drawer, Box, Typography, IconButton, Button } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import NavTabs from "./NavTabs";
 
 const MenuDrawer = ({ open, handleClose }) => {
   return (
@@ -14,6 +15,8 @@ const MenuDrawer = ({ open, handleClose }) => {
             <CloseIcon fontSize="large" />
           </IconButton>
         </Box>
+
+        <NavTabs />
       </Box>
     </Drawer>
   );

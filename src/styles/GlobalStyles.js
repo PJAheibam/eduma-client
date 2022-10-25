@@ -12,6 +12,9 @@ export default function Global({ theme }) {
           color: ${theme.palette.text.primary};
           background-color: ${theme.palette.background.default};
         }
+        .MuiTabs-indicator {
+          left: 0;
+        }
       `}
     />
   );
