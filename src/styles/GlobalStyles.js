@@ -15,6 +15,9 @@ export default function Global({ theme }) {
         .MuiTabs-indicator {
           left: 0;
         }
+        .MuiCardMedia-root {
+          object-fit: contain;
+        }
       `}
     />
   );

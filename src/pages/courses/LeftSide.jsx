@@ -1,11 +1,11 @@
 import React from "react";
 import {
-  Paper,
   List,
   ListItemButton,
   Typography,
   ListItemText,
   Divider,
+  Box,
 } from "@mui/material";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -23,11 +23,16 @@ const LeftSide = () => {
   }, []);
 
   return (
-    <Paper
+    <Box
       sx={{
+        display: {
+          xs: "none",
+          sm: "block",
+        },
         padding: "24px",
         paddingLeft: "max(24px, calc((100vw - 1400px)/2))",
-        borderRadius: 0,
+        position: "sticky",
+        top: 0,
       }}
       elevation={1}
     >
@@ -48,7 +53,7 @@ const LeftSide = () => {
             </React.Fragment>
           ))}
       </List>
-    </Paper>
+    </Box>
   );
 };
 

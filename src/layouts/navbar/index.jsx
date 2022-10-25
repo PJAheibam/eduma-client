@@ -66,7 +66,7 @@ const Navbar = () => {
       <AppBar
         position="static"
         sx={{
-          bgcolor: "background.paper",
+          bgcolor: "secondary.main",
           paddingInline: "calc((100vw - 1400px)/2)",
         }}
       >
@@ -121,6 +121,12 @@ const Navbar = () => {
               to="/register"
               component={Link}
               endIcon={<EastIcon />}
+              sx={{
+                display: {
+                  xs: "none",
+                  sm: "inline-block",
+                },
+              }}
             >
               Register
             </Button>
