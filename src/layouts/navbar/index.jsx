@@ -43,7 +43,7 @@ const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [isMenuOpen, setMenuOpen] = useState(false);
   const isUserMenuOpne = Boolean(anchorEl);
-  const currentPath = useMatchedRoute(["/", "/courses", "/blog", "/faq"]);
+  const currentPath = useMatchedRoute(["/", "/courses/:id", "/blog", "/faq"]);
 
   function openUserMenu(event) {
     setAnchorEl(event.currentTarget);
@@ -91,8 +91,8 @@ const Navbar = () => {
             <Tab label="Home" value="/" to="/" component={Link} />
             <Tab
               label="Courses"
-              value="/courses"
-              to="/courses"
+              value="/courses/:id"
+              to="/courses/all"
               component={Link}
             />
             <Tab label="Blog" value="/blog" to="/blog" component={Link} />

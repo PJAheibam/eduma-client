@@ -12,7 +12,7 @@ const Routes = () => {
       <RouteWrapper>
         <Route path="/" element={<Root />}>
           <Route path="" element={<Home />} />
-          <Route path="courses" element={<Courses />} />
+          <Route path="courses/:id" element={<Courses />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="*" element={<PageNotFound />} />
