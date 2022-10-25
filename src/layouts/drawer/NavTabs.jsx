@@ -18,11 +18,41 @@ const NavTabs = () => {
   const currentTab = useMatchedRoute(["/", "/courses", "/blog", "/faq"]);
   return (
     <List component="nav">
-      <ListItemButton>
+      <ListItemButton selected={currentTab === "/"} to="/" component={Link}>
         <ListItemIcon>
           <HomeIcon />
         </ListItemIcon>
         <ListItemText>Home</ListItemText>
+      </ListItemButton>
+      <ListItemButton
+        selected={currentTab === "/courses"}
+        to="/courses"
+        component={Link}
+      >
+        <ListItemIcon>
+          <SchoolIcon />
+        </ListItemIcon>
+        <ListItemText>Courses</ListItemText>
+      </ListItemButton>
+      <ListItemButton
+        selected={currentTab === "/blog"}
+        to="/blog"
+        component={Link}
+      >
+        <ListItemIcon>
+          <LibraryBooksIcon />
+        </ListItemIcon>
+        <ListItemText>Blog</ListItemText>
+      </ListItemButton>
+      <ListItemButton
+        selected={currentTab === "/faq"}
+        to="/faq"
+        component={Link}
+      >
+        <ListItemIcon>
+          <LiveHelpIcon />
+        </ListItemIcon>
+        <ListItemText>FAQ</ListItemText>
       </ListItemButton>
     </List>
   );

@@ -8,7 +8,6 @@ import ThemeHandler from "./context/theme-context";
 
 const App = () => {
   const [mode, setMode] = useState("dark");
-  console.log(mode);
   return (
     <>
       <ThemeProvider theme={mode === "dark" ? darkTheme : lightTheme}>

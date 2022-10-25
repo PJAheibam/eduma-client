@@ -61,7 +61,6 @@ const Navbar = () => {
     setMenuOpen((prev) => !prev);
   }
 
-  console.log(user);
   return (
     <>
       <AppBar position="static" sx={{ bgcolor: "background.paper" }}>
