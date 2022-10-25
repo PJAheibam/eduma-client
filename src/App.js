@@ -4,16 +4,20 @@ import { useState } from "react";
 import { darkTheme, lightTheme } from "./styles/theme";
 import GlobalStyles from "./styles/GlobalStyles";
 import AuthProvider from "./context/AuthContext";
+import ThemeHandler from "./context/theme-context";
 
 const App = () => {
   const [mode, setMode] = useState("dark");
+  console.log(mode);
   return (
     <>
       <ThemeProvider theme={mode === "dark" ? darkTheme : lightTheme}>
-        <GlobalStyles theme={mode === "dark" ? darkTheme : lightTheme} />
-        <AuthProvider>
-          <Routes />
-        </AuthProvider>
+        <ThemeHandler toggleMode={setMode}>
+          <GlobalStyles theme={mode === "dark" ? darkTheme : lightTheme} />
+          <AuthProvider>
+            <Routes />
+          </AuthProvider>
+        </ThemeHandler>
       </ThemeProvider>
     </>
   );

@@ -8,19 +8,27 @@ import {
   Typography,
   Box,
   Stack,
+  IconButton,
+  useTheme,
 } from "@mui/material";
 import EastIcon from "@mui/icons-material/East";
 import logo from "../../assets/images/logo.png";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { Link } from "react-router-dom";
 import { useMatchedRoute } from "../../hooks/use-matched-route";
 import { useAuth } from "../../context/AuthContext";
+import { useToggleTheme } from "../../context/theme-context";
 
 const Navbar = () => {
+  const theme = useTheme();
+  const toggleTheme = useToggleTheme();
+
   const { user, handleLogOut, loading } = useAuth();
   // console.info(loading, user);
   const currentPath = useMatchedRoute(["/", "/courses", "/faq"]);
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ bgcolor: "background.paper" }}>
       <Toolbar
         sx={{
           maxWidth: "1400px",
@@ -43,8 +51,13 @@ const Navbar = () => {
           />
           <Tab label="FAQ" value="/faq" to="/faq" component={Link} />
         </Tabs>
+        <IconButton sx={{ marginRight: 2 }} onClick={toggleTheme}>
+          {theme.palette.mode === "dark" ? <LightModeIcon /> : <DarkModeIcon />}
+        </IconButton>
         <Stack
-          sx={{ display: user?.uid && !loading ? "none" : "block" }}
+          sx={{
+            display: user?.uid && !loading ? "none" : "block",
+          }}
           spacing={2}
           direction="row"
         >
