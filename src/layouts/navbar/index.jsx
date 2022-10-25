@@ -66,7 +66,7 @@ const Navbar = () => {
       <AppBar
         position="static"
         sx={{
-          bgcolor: "secondary.main",
+          bgcolor: "background.paper",
           paddingInline: "calc((100vw - 1400px)/2)",
         }}
       >
@@ -108,7 +108,7 @@ const Navbar = () => {
           </IconButton>
           <Stack
             sx={{
-              display: user?.uid && !loading ? "none" : "block",
+              display: user?.uid && !loading ? "none" : "flex",
             }}
             spacing={2}
             direction="row"
@@ -124,7 +124,7 @@ const Navbar = () => {
               sx={{
                 display: {
                   xs: "none",
-                  sm: "inline-block",
+                  sm: "flex",
                 },
               }}
             >

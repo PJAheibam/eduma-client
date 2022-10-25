@@ -14,7 +14,10 @@ const GridItem = ({ course }) => {
   const { imageURL, courseName, desc } = course;
   return (
     <Grid item xs={12} sm={6} md={4}>
-      <Card sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
+      <Card
+        elevation={4}
+        sx={{ height: "100%", display: "flex", flexDirection: "column" }}
+      >
         <CardMedia component="img" height="250" image={imageURL} />
         <CardContent>
           <Typography variant="h5" textTransform="uppercase" component="h1">
