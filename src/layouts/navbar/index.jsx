@@ -63,13 +63,14 @@ const Navbar = () => {
 
   return (
     <>
-      <AppBar position="static" sx={{ bgcolor: "background.paper" }}>
-        <Toolbar
-          sx={{
-            maxWidth: "1400px",
-            // mx: "auto",
-          }}
-        >
+      <AppBar
+        position="static"
+        sx={{
+          bgcolor: "background.paper",
+          paddingInline: "max(16px, calc((100vw - 1400px)/2))",
+        }}
+      >
+        <Toolbar>
           <Stack direction="row" spacing={2} sx={{ flexGrow: 1 }}>
             <Box to="/" component={Link}>
               {" "}
