@@ -10,19 +10,12 @@ import {
 import { useEffect } from "react";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import useCourses from "../../hooks/use-courses";
 
 const LeftSide = () => {
-  const [courses, setCourses] = useState(null);
+  const { courses, loading } = useCourses();
   const { pathname } = useLocation();
   //FETCH DATA FROM API
-  async function fetchData() {
-    const res = await fetch(process.env.REACT_APP_COURSES_API);
-    const data = await res.json();
-    setCourses(data);
-  }
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   return (
     <Box

@@ -8,9 +8,10 @@ import {
   CardActions,
   Button,
 } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const GridItem = ({ course }) => {
-  const { imageURL, name, desc } = course;
+  const { imageURL, name, desc, id } = course;
   return (
     <Grid item xs={12} sm={6} md={4}>
       <Card
@@ -33,12 +34,14 @@ const GridItem = ({ course }) => {
             alignItems: "start",
           }}
         >
-          <Button>Learn more</Button>
+          <Button to={`/courses/${id}`} component={Link}>
+            Learn more
+          </Button>
           <Button
             size="small"
             color="success"
             variant="outlined"
-            sx={{ display: "block", marginLeft: 5 }}
+            sx={{ display: "block", marginLeft: 1, marginBottom: 2 }}
           >
             Get Premium Access
           </Button>
