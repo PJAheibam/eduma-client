@@ -10,7 +10,6 @@ import {
 } from "@mui/material";
 
 const GridItem = ({ course }) => {
-  console.log(course);
   const { imageURL, name, desc } = course;
   return (
     <Grid item xs={12} sm={6} md={4}>

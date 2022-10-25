@@ -2,6 +2,7 @@ import React from "react";
 import { Grid, Paper } from "@mui/material";
 import LeftSide from "./LeftSide";
 import Content from "./Content";
+import { Outlet } from "react-router-dom";
 
 const Courses = () => {
   return (
@@ -18,7 +19,7 @@ const Courses = () => {
         <LeftSide />
       </Grid>
       <Grid item xs={12} sm={8} md={9}>
-        <Content />
+        <Outlet />
       </Grid>
     </Grid>
   );
