@@ -10,11 +10,13 @@ import {
   Stack,
   IconButton,
   useTheme,
+  Avatar,
 } from "@mui/material";
 import EastIcon from "@mui/icons-material/East";
 import logo from "../../assets/images/logo.png";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Link } from "react-router-dom";
 import { useMatchedRoute } from "../../hooks/use-matched-route";
 import { useAuth } from "../../context/AuthContext";
@@ -73,13 +75,12 @@ const Navbar = () => {
             Register
           </Button>
         </Stack>
-        <Button
+        <IconButton
           sx={{ display: user?.uid && !loading ? "block" : "none" }}
-          variant="outlined"
           onClick={handleLogOut}
         >
-          Logout
-        </Button>
+          <Avatar src={AccountCircleIcon} />
+        </IconButton>
       </Toolbar>
     </AppBar>
   );
