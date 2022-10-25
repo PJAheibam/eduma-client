@@ -6,9 +6,11 @@ import {
   Tab,
   Button,
   Typography,
+  Box,
   Stack,
 } from "@mui/material";
 import EastIcon from "@mui/icons-material/East";
+import logo from "../../assets/images/logo.png";
 import { Link } from "react-router-dom";
 import { useMatchedRoute } from "../../hooks/use-matched-route";
 
@@ -24,7 +26,10 @@ const Navbar = () => {
         }}
       >
         <Stack direction="row" spacing={2} sx={{ flexGrow: 1 }}>
-          <Typography>EDUMA</Typography>
+          <Box to="/" component={Link}>
+            {" "}
+            <img height="40px" src={logo} alt="Logo" />{" "}
+          </Box>
         </Stack>
         <Tabs value={currentPath} sx={{ mr: "1rem" }}>
           <Tab label="Home" value="/" to="/" component={Link} />
