@@ -20,7 +20,7 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   }
-  function handleLogOut() {
+  function logOut() {
     setLoading(true);
     signOut(auth)
       .then(() => {
@@ -40,7 +40,7 @@ const AuthProvider = ({ children }) => {
     loading,
     setLoading,
     createUser,
-    handleLogOut,
+    logOut,
     handleLogin,
   };
 

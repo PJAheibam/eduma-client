@@ -16,12 +16,17 @@ import {
   ListItemText,
   ListItemIcon,
 } from "@mui/material";
+
+//icons
 import EastIcon from "@mui/icons-material/East";
 import logo from "../../assets/images/logo.png";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LogoutIcon from "@mui/icons-material/Logout";
 import userIcon from "../../assets/icons/user-icon-1.png";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import SettingsIcon from "@mui/icons-material/Settings";
+
 import { Link } from "react-router-dom";
 import { useMatchedRoute } from "../../hooks/use-matched-route";
 import { useAuth } from "../../context/AuthContext";
@@ -29,21 +34,25 @@ import { useToggleTheme } from "../../context/theme-context";
 import { useState } from "react";
 
 const Navbar = () => {
+  const { user, logOut, loading } = useAuth();
   const theme = useTheme();
   const toggleTheme = useToggleTheme();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-
-  const openMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const closeMenu = () => {
-    setAnchorEl(null);
-  };
-
-  const { user, handleLogOut, loading } = useAuth();
-  // console.info(loading, user);
   const currentPath = useMatchedRoute(["/", "/courses", "/faq"]);
+
+  function openMenu(event) {
+    setAnchorEl(event.currentTarget);
+  }
+  function closeMenu() {
+    setAnchorEl(null);
+  }
+  // console.info(loading, user);
+  function handleLogOut() {
+    logOut();
+    closeMenu();
+  }
+  console.log(user);
   return (
     <AppBar position="static" sx={{ bgcolor: "background.paper" }}>
       <Toolbar
@@ -78,7 +87,7 @@ const Navbar = () => {
           spacing={2}
           direction="row"
         >
-          <Button variant="outlined" to="/login" component={Link}>
+          <Button color="error" variant="outlined" to="/login" component={Link}>
             Login
           </Button>
           <Button
@@ -109,9 +118,35 @@ const Navbar = () => {
           anchorEl={anchorEl}
           MenuListProps={{ "aria-labelledby": "user-menu-button" }}
         >
+          <MenuItem
+            disabled
+            sx={{ display: user?.displayName ? "block" : "none" }}
+          >
+            Hi PJ
+          </MenuItem>
           <MenuItem onClick={closeMenu}>
             <ListItemIcon>
-              <LogoutIcon />{" "}
+              <AccountCircleIcon />{" "}
+            </ListItemIcon>
+            <ListItemText>My Profile</ListItemText>
+          </MenuItem>
+          <MenuItem onClick={closeMenu}>
+            <ListItemIcon>
+              <SettingsIcon />{" "}
+            </ListItemIcon>
+            <ListItemText>Setting</ListItemText>
+          </MenuItem>
+          <MenuItem
+            onClick={handleLogOut}
+            sx={{
+              color: "error.main",
+              "&:hover": {
+                bgcolor: "rgba(244, 67, 54, 0.08)",
+              },
+            }}
+          >
+            <ListItemIcon>
+              <LogoutIcon color="error" />{" "}
             </ListItemIcon>
             <ListItemText>Logout</ListItemText>
           </MenuItem>
