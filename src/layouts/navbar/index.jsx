@@ -43,7 +43,7 @@ const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [isMenuOpen, setMenuOpen] = useState(false);
   const isUserMenuOpne = Boolean(anchorEl);
-  const currentPath = useMatchedRoute(["/", "/courses", "/faq"]);
+  const currentPath = useMatchedRoute(["/", "/courses", "/blog", "/faq"]);
 
   function openUserMenu(event) {
     setAnchorEl(event.currentTarget);
@@ -67,10 +67,10 @@ const Navbar = () => {
         position="static"
         sx={{
           bgcolor: "background.paper",
-          paddingInline: "max(16px, calc((100vw - 1400px)/2))",
+          paddingInline: "calc((100vw - 1400px)/2)",
         }}
       >
-        <Toolbar>
+        <Toolbar sx={{ paddingInline: "20px" }}>
           <Stack direction="row" spacing={2} sx={{ flexGrow: 1 }}>
             <Box to="/" component={Link}>
               {" "}
@@ -82,7 +82,8 @@ const Navbar = () => {
             sx={{
               display: {
                 xs: "none",
-                sm: "block",
+                sm: "none",
+                md: "block",
               },
               mr: "1rem",
             }}
@@ -94,8 +95,10 @@ const Navbar = () => {
               to="/courses"
               component={Link}
             />
+            <Tab label="Blog" value="/blog" to="/blog" component={Link} />
             <Tab label="FAQ" value="/faq" to="/faq" component={Link} />
           </Tabs>
+
           <IconButton sx={{ marginRight: 2 }} onClick={toggleTheme}>
             {theme.palette.mode === "dark" ? (
               <LightModeIcon />
@@ -110,12 +113,7 @@ const Navbar = () => {
             spacing={2}
             direction="row"
           >
-            <Button
-              color="error"
-              variant="outlined"
-              to="/login"
-              component={Link}
-            >
+            <Button variant="outlined" to="/login" component={Link}>
               Login
             </Button>
             <Button
