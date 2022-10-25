@@ -11,7 +11,7 @@ import {
 
 const GridItem = ({ course }) => {
   console.log(course);
-  const { imageURL, courseName, desc } = course;
+  const { imageURL, name, desc } = course;
   return (
     <Grid item xs={12} sm={6} md={4}>
       <Card
@@ -21,7 +21,7 @@ const GridItem = ({ course }) => {
         <CardMedia component="img" height="250" image={imageURL} />
         <CardContent>
           <Typography variant="h5" textTransform="uppercase" component="h1">
-            {courseName}
+            {name}
           </Typography>
           <Typography color="text.secondary">{desc}</Typography>
         </CardContent>

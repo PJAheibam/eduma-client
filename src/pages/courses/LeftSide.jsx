@@ -47,7 +47,7 @@ const LeftSide = () => {
           courses.map((course) => (
             <React.Fragment key={course?.id}>
               <ListItemButton>
-                <ListItemText>{course?.courseName}</ListItemText>
+                <ListItemText>{course?.name}</ListItemText>
               </ListItemButton>
               <Divider />
             </React.Fragment>
