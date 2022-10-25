@@ -11,20 +11,35 @@ import {
   IconButton,
   useTheme,
   Avatar,
+  Menu,
+  MenuItem,
+  ListItemText,
+  ListItemIcon,
 } from "@mui/material";
 import EastIcon from "@mui/icons-material/East";
 import logo from "../../assets/images/logo.png";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import LogoutIcon from "@mui/icons-material/Logout";
+import userIcon from "../../assets/icons/user-icon-1.png";
 import { Link } from "react-router-dom";
 import { useMatchedRoute } from "../../hooks/use-matched-route";
 import { useAuth } from "../../context/AuthContext";
 import { useToggleTheme } from "../../context/theme-context";
+import { useState } from "react";
 
 const Navbar = () => {
   const theme = useTheme();
   const toggleTheme = useToggleTheme();
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+
+  const openMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const closeMenu = () => {
+    setAnchorEl(null);
+  };
 
   const { user, handleLogOut, loading } = useAuth();
   // console.info(loading, user);
@@ -76,11 +91,31 @@ const Navbar = () => {
           </Button>
         </Stack>
         <IconButton
+          id="user-menu-button"
           sx={{ display: user?.uid && !loading ? "block" : "none" }}
-          onClick={handleLogOut}
+          onClick={openMenu}
+          title="User Menu"
+          aria-label="User Menu"
+          aria-controls={open ? "user-profile-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? "true" : undefined}
         >
-          <Avatar src={AccountCircleIcon} />
+          <Avatar src={userIcon} />
         </IconButton>
+        <Menu
+          id="user-profile-menu"
+          open={open}
+          onClose={closeMenu}
+          anchorEl={anchorEl}
+          MenuListProps={{ "aria-labelledby": "user-menu-button" }}
+        >
+          <MenuItem onClick={closeMenu}>
+            <ListItemIcon>
+              <LogoutIcon />{" "}
+            </ListItemIcon>
+            <ListItemText>Logout</ListItemText>
+          </MenuItem>
+        </Menu>
       </Toolbar>
     </AppBar>
   );
