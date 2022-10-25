@@ -9,9 +9,11 @@ import {
 } from "@mui/material";
 import { useEffect } from "react";
 import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const LeftSide = () => {
   const [courses, setCourses] = useState(null);
+  const { pathname } = useLocation();
   //FETCH DATA FROM API
   async function fetchData() {
     const res = await fetch(process.env.REACT_APP_COURSES_API);
@@ -40,13 +42,21 @@ const LeftSide = () => {
         Courses List
       </Typography>
       <List>
-        <ListItemButton>
+        <ListItemButton
+          selected={pathname === "/courses/all"}
+          to="/courses/all"
+          component={Link}
+        >
           <ListItemText>All</ListItemText>
         </ListItemButton>
         {courses &&
           courses.map((course) => (
             <React.Fragment key={course?.id}>
-              <ListItemButton>
+              <ListItemButton
+                selected={pathname === `/courses/${course?.id}`}
+                to={`/courses/${course?.id}`}
+                component={Link}
+              >
                 <ListItemText>{course?.name}</ListItemText>
               </ListItemButton>
               <Divider />
