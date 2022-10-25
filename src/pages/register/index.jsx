@@ -27,7 +27,7 @@ const initialFormValue = {
 };
 
 const Register = () => {
-  const { loading, createUser } = useAuth();
+  const { createUser } = useAuth();
   const {
     values,
     errors,
@@ -42,8 +42,9 @@ const Register = () => {
     onSubmit,
   });
 
-  function onSubmit() {
-    createUser();
+  async function onSubmit(values, action) {
+    const res = await createUser(values.email, values.password);
+    console.info(res.user);
   }
 
   return (
@@ -74,6 +75,7 @@ const Register = () => {
           </Typography>
           <Stack spacing={2}>
             <TextField
+              autoComplete="off"
               size="small"
               variant="standard"
               label="First Name"
@@ -88,6 +90,7 @@ const Register = () => {
               }
             />
             <TextField
+              autoComplete="off"
               size="small"
               variant="standard"
               label="Last Name"
@@ -102,6 +105,7 @@ const Register = () => {
               }
             />
             <TextField
+              autoComplete="off"
               size="small"
               variant="standard"
               label="Email"
@@ -114,6 +118,7 @@ const Register = () => {
               helperText={errors.email && touched.email ? errors.email : null}
             />
             <TextField
+              autoComplete="off"
               size="small"
               variant="standard"
               label="Password"
@@ -128,6 +133,7 @@ const Register = () => {
               }
             />
             <TextField
+              autoComplete="off"
               size="small"
               variant="standard"
               label="Confirm Password"

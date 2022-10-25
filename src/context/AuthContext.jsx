@@ -1,5 +1,11 @@
-import { createContext, useContext, useState } from "react";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { createContext, useContext, useEffect, useState } from "react";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+} from "firebase/auth";
 import { auth } from "../features/auth/Auth";
 
 const AuthContext = createContext();
@@ -8,17 +14,48 @@ export const useAuth = () => useContext(AuthContext);
 
 const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState(null);
   // FUNCTIONS
   function createUser(email, password) {
-    alert("Create User");
-    createUserWithEmailAndPassword(auth, email, password);
+    setLoading(true);
+    return createUserWithEmailAndPassword(auth, email, password);
   }
   function handleLogOut() {
-    alert("Handle Log out");
+    setLoading(true);
+    signOut(auth)
+      .then(() => {
+        setUser(null);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
+  function handleLogin(email, password) {
+    setLoading(true);
+    return signInWithEmailAndPassword(auth, email, password);
+  }
+  const values = {
+    user,
+    loading,
+    setLoading,
+    createUser,
+    handleLogOut,
+    handleLogin,
+  };
 
-  const values = { loading, createUser, handleLogOut };
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      console.info(currentUser);
+      if (currentUser) setUser(currentUser);
+      else setUser(null);
+      // setLoading(false);
+    });
 
+    return () => {
+      unsubscribe();
+    };
+  }, []);
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 };
 

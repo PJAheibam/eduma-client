@@ -13,10 +13,12 @@ import EastIcon from "@mui/icons-material/East";
 import logo from "../../assets/images/logo.png";
 import { Link } from "react-router-dom";
 import { useMatchedRoute } from "../../hooks/use-matched-route";
+import { useAuth } from "../../context/AuthContext";
 
 const Navbar = () => {
+  const { user, handleLogOut, loading } = useAuth();
+  // console.info(loading, user);
   const currentPath = useMatchedRoute(["/", "/courses", "/faq"]);
-
   return (
     <AppBar position="static">
       <Toolbar
@@ -41,7 +43,11 @@ const Navbar = () => {
           />
           <Tab label="FAQ" value="/faq" to="/faq" component={Link} />
         </Tabs>
-        <Stack spacing={2} direction="row">
+        <Stack
+          sx={{ display: user?.uid && !loading ? "none" : "block" }}
+          spacing={2}
+          direction="row"
+        >
           <Button variant="outlined" to="/login" component={Link}>
             Login
           </Button>
@@ -54,6 +60,13 @@ const Navbar = () => {
             Register
           </Button>
         </Stack>
+        <Button
+          sx={{ display: user?.uid && !loading ? "block" : "none" }}
+          variant="outlined"
+          onClick={handleLogOut}
+        >
+          Logout
+        </Button>
       </Toolbar>
     </AppBar>
   );
