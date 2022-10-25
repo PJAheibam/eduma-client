@@ -9,6 +9,7 @@ import {
   Button,
 } from "@mui/material";
 import { Link } from "react-router-dom";
+import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
 
 const GridItem = ({ course }) => {
   const { imageURL, name, desc, id } = course;
@@ -38,10 +39,11 @@ const GridItem = ({ course }) => {
             Learn more
           </Button>
           <Button
+            disableElevation
             size="small"
-            color="success"
-            variant="outlined"
-            sx={{ display: "block", marginLeft: 1, marginBottom: 2 }}
+            variant="contained"
+            sx={{ display: "flex", marginLeft: 1, marginBottom: 2 }}
+            endIcon={<DoubleArrowIcon />}
           >
             Get Premium Access
           </Button>
