@@ -12,6 +12,7 @@ import {
 import React from "react";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
+import { useAuth } from "../../context/AuthContext";
 import { registrationSchema } from "../../schemas/registration-from";
 //icons
 import GoogleIcon from "@mui/icons-material/Google";
@@ -25,11 +26,8 @@ const initialFormValue = {
   confirmPassword: "",
 };
 
-const onSubmit = (values, action) => {
-  console.log(action);
-};
-
 const Register = () => {
+  const { loading, createUser } = useAuth();
   const {
     values,
     errors,
@@ -43,6 +41,10 @@ const Register = () => {
     validationSchema: registrationSchema,
     onSubmit,
   });
+
+  function onSubmit() {
+    createUser();
+  }
 
   return (
     <Grid

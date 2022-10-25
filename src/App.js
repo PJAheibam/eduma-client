@@ -3,6 +3,7 @@ import { ThemeProvider } from "@mui/material";
 import { useState } from "react";
 import { darkTheme, lightTheme } from "./styles/theme";
 import GlobalStyles from "./styles/GlobalStyles";
+import AuthProvider from "./context/AuthContext";
 
 const App = () => {
   const [mode, setMode] = useState("dark");
@@ -10,7 +11,9 @@ const App = () => {
     <>
       <ThemeProvider theme={mode === "dark" ? darkTheme : lightTheme}>
         <GlobalStyles theme={mode === "dark" ? darkTheme : lightTheme} />
-        <Routes />
+        <AuthProvider>
+          <Routes />
+        </AuthProvider>
       </ThemeProvider>
     </>
   );
