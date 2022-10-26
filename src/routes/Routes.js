@@ -1,4 +1,4 @@
-import { Routes as RouteWrapper, Route } from "react-router-dom";
+import { Routes as RouteWrapper, Route, Navigate } from "react-router-dom";
 import Root from "../layouts/Root";
 import Courses from "../pages/courses";
 import Content from "../pages/courses/Content";
@@ -17,9 +17,14 @@ const Routes = () => {
         <Route path="/" element={<Root />}>
           <Route path="" element={<Home />} />
           <Route path="courses/" element={<Courses />}>
+            <Route path="" element={<Content />} />
             <Route path="all" element={<Content />} />
             <Route path=":id" element={<Course />} />
           </Route>
+          <Route
+            path="courses"
+            element={<Navigate to="/courses/all" replace />}
+          />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route

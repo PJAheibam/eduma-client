@@ -36,7 +36,11 @@ const LeftSide = () => {
       </Typography>
       <List>
         <ListItemButton
-          selected={pathname === "/courses/all"}
+          selected={
+            pathname === "/courses/all" ||
+            pathname === "/courses" ||
+            pathname === "/courses/"
+          }
           to="/courses/all"
           component={Link}
         >
