@@ -86,9 +86,11 @@ const Navbar = () => {
               <DarkModeIcon />
             )}
           </IconButton>
+
+          {/* LOGIN - REGISTER BUTTON */}
           <Stack
             sx={{
-              display: user?.uid && !loading ? "none" : "flex",
+              display: loading ? "none" : user?.uid ? "none" : "flex",
             }}
             spacing={2}
             direction="row"
@@ -111,9 +113,11 @@ const Navbar = () => {
               Register
             </Button>
           </Stack>
+
+          {/* USER PROFILE ICON BUTTON */}
           <IconButton
             id="user-menu-button"
-            sx={{ display: user?.uid && !loading ? "block" : "none" }}
+            sx={{ display: loading ? "none" : user?.uid ? "block" : "none" }}
             onClick={openUserMenu}
             title="User Menu"
             aria-label="User Menu"
