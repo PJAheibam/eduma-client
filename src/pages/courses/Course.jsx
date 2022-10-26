@@ -9,12 +9,18 @@ import {
   ListItemIcon,
   ListItemText,
   ListSubheader,
+  Button,
+  IconButton,
+  styled,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loading from "../loading";
 import PageNotFound from "../page-not-found";
 import StarIcon from "@mui/icons-material/Star";
+import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
+import EastIcon from "@mui/icons-material/East";
+import { CtaButton } from "../../components";
 
 const Course = () => {
   const params = useParams();
@@ -50,11 +56,20 @@ const Course = () => {
       spacing={4}
     >
       <Grid container>
-        <Grid item sm={12} md={6}>
+        <Grid
+          item
+          sm={12}
+          md={6}
+          sx={{ display: "flex", flexDirection: "column" }}
+        >
           <Typography variant="h4" component="h1" textTransform="uppercase">
             {course.title}
+            <IconButton sx={{ ml: 2 }} variant="outlined" size="large">
+              <PictureAsPdfIcon />
+            </IconButton>
           </Typography>
           <Typography color="text.secondary">{course.desc}</Typography>
+          <CtaButton endIcon={<EastIcon />}>Get Premium Access Now</CtaButton>
         </Grid>
         <Grid item sm={12} md={6}>
           <CardMedia
