@@ -43,7 +43,7 @@ const Course = () => {
   useEffect(() => {
     fetchData();
   }, [params.id]);
-  console.log(course);
+
   if (loading) return <Loading />;
   if (!course) return <PageNotFound />;
 
@@ -87,7 +87,10 @@ const Course = () => {
       <List
         component="ul"
         subheader={
-          <ListSubheader component="h2" sx={{ fontSize: "20px" }}>
+          <ListSubheader
+            component="h2"
+            sx={{ fontSize: "20px", background: "transparent" }}
+          >
             Work Experience-Based Learning Approach
           </ListSubheader>
         }

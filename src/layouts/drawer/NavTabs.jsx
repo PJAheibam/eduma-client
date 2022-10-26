@@ -26,7 +26,7 @@ const NavTabs = () => {
       </ListItemButton>
       <ListItemButton
         selected={currentTab === "/courses"}
-        to="/courses"
+        to="/courses/all"
         component={Link}
       >
         <ListItemIcon>

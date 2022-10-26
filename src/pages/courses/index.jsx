@@ -3,8 +3,11 @@ import { Grid, Paper } from "@mui/material";
 import LeftSide from "./LeftSide";
 import Content from "./Content";
 import { Outlet } from "react-router-dom";
+import BreadCrumbs from "./BreadCrumbs";
+import useCourses from "../../hooks/use-courses";
 
 const Courses = () => {
+  const { courses } = useCourses();
   return (
     <Grid container component="main">
       <Grid
@@ -17,6 +20,7 @@ const Courses = () => {
         elevation={0}
       >
         <LeftSide />
+        <BreadCrumbs courses={courses} />
       </Grid>
       <Grid item xs={12} sm={8} md={9}>
         <Outlet />
