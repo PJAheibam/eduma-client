@@ -49,25 +49,19 @@ const Blog = () => {
           federated identity providers like Google, Facebook and Twitter, and
           more. That's why I use firebase for authentication.
         </Details>
-        <Details>
-          Firebase some alternatives are
-          <u
-            style={{
-              textDecoration: "none",
-            }}
-          >
-            <li>Back4App</li>
-            <li>Backendless</li>
-            <li>Kuzzle</li>
-            <li>Pubnub</li>
-            <li>Kumulos</li>
-            <li>Appwrite</li>
-            <li>Deployd</li>
-            <li>NHost</li>
-            <li>AWS Amplify</li>
-            <li>Heroku</li>
-          </u>
-        </Details>
+        <Details>Firebase some alternatives are</Details>
+        <ul style={{ paddingLeft: "4.5rem", fontSize: 18 }}>
+          <li>Back4App</li>
+          <li>Backendless</li>
+          <li>Kuzzle</li>
+          <li>Pubnub</li>
+          <li>Kumulos</li>
+          <li>Appwrite</li>
+          <li>Deployd</li>
+          <li>NHost</li>
+          <li>AWS Amplify</li>
+          <li>Heroku</li>
+        </ul>
       </Stack>
       <Stack spacing={1}>
         <Title>How does the private route work?</Title>
@@ -101,13 +95,11 @@ const Blog = () => {
           language. It can handle concurrent requests with a single thread
           without blocking it for one request.
         </Details>
-        <Details>
-          Node.js basically works on two concept
-          <ol>
-            <li>Asynchronous</li>
-            <li>Non-blocking I/O</li>
-          </ol>
-        </Details>
+        <Details>Node.js basically works on two concept</Details>
+        <ol style={{ paddingLeft: "4.5rem", fontSize: 18 }}>
+          <li>Asynchronous</li>
+          <li>Non-blocking I/O</li>
+        </ol>
       </Stack>
     </Container>
   );

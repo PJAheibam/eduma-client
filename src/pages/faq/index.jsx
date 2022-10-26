@@ -36,15 +36,13 @@ const Faq = () => {
           Development by Skill-Lync, what are the different career support
           services that the learners will get?
         </Title>
-        <Text>
-          You will get several career support services like:
-          <ul>
-            <li>Enhancement of technical skills</li>
-            <li>Mock interviews</li>
-            <li>Resume building</li>
-            <li>LinkedIn support</li>
-          </ul>
-        </Text>
+        <Text>You will get several career support services like:</Text>
+        <ul style={{ paddingLeft: "2.5rem", fontSize: 18 }}>
+          <li>Enhancement of technical skills</li>
+          <li>Mock interviews</li>
+          <li>Resume building</li>
+          <li>LinkedIn support</li>
+        </ul>
       </Stack>
       <Stack spacing={2}>
         <Title>
