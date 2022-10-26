@@ -14,7 +14,16 @@ const NavTabs = () => {
   const { pathname } = useLocation();
 
   return (
-    <Stack spacing={2} direction="row">
+    <Stack
+      spacing={2}
+      direction="row"
+      sx={{
+        display: {
+          xs: "none",
+          md: "flex",
+        },
+      }}
+    >
       <NavButton active={(pathname === "/").toString()} component={Link} to="/">
         Home
       </NavButton>

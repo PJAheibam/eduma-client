@@ -167,7 +167,7 @@ const Navbar = () => {
             sx={{
               display: {
                 xs: "flex",
-                sm: "none",
+                md: "none",
               },
               marginLeft: "1rem",
             }}
