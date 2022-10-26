@@ -30,11 +30,11 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 
 import { Link } from "react-router-dom";
-import { useMatchedRoute } from "../../hooks/use-matched-route";
 import { useAuth } from "../../context/AuthContext";
 import { useToggleTheme } from "../../context/theme-context";
 import { useState } from "react";
 import MenuDrawer from "../drawer";
+import NavTabs from "./NavTabs";
 
 const Navbar = () => {
   const { user, logOut, loading } = useAuth();
@@ -43,7 +43,6 @@ const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [isMenuOpen, setMenuOpen] = useState(false);
   const isUserMenuOpne = Boolean(anchorEl);
-  const currentPath = useMatchedRoute(["/", "/courses/:id", "/blog", "/faq"]);
 
   function openUserMenu(event) {
     setAnchorEl(event.currentTarget);
@@ -77,27 +76,8 @@ const Navbar = () => {
               <img height="40px" src={logo} alt="Logo" />{" "}
             </Box>
           </Stack>
-          <Tabs
-            value={currentPath}
-            sx={{
-              display: {
-                xs: "none",
-                sm: "none",
-                md: "block",
-              },
-              mr: "1rem",
-            }}
-          >
-            <Tab label="Home" value="/" to="/" component={Link} />
-            <Tab
-              label="Courses"
-              value="/courses/:id"
-              to="/courses/all"
-              component={Link}
-            />
-            <Tab label="Blog" value="/blog" to="/blog" component={Link} />
-            <Tab label="FAQ" value="/faq" to="/faq" component={Link} />
-          </Tabs>
+
+          <NavTabs />
 
           <IconButton sx={{ marginRight: 2 }} onClick={toggleTheme}>
             {theme.palette.mode === "dark" ? (

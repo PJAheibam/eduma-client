@@ -7,6 +7,8 @@ import Login from "../pages/login";
 import PageNotFound from "../pages/page-not-found";
 import Register from "../pages/register";
 import Course from "../pages/courses/Course";
+import Checkout from "../pages/checkout";
+import PrivateRoute from "./private-route";
 
 const Routes = () => {
   return (
@@ -20,7 +22,9 @@ const Routes = () => {
           </Route>
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+          <Route path="checkout/:courseID" element={<Checkout />} />
           <Route path="*" element={<PageNotFound />} />
+          <Route></Route>
         </Route>
       </RouteWrapper>
     </>

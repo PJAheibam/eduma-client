@@ -14,7 +14,7 @@ import {
   styled,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Loading from "../loading";
 import PageNotFound from "../page-not-found";
 import StarIcon from "@mui/icons-material/Star";
@@ -73,7 +73,13 @@ const Course = () => {
             </IconButton>
           </Typography>
           <Typography color="text.secondary">{course.desc}</Typography>
-          <CtaButton endIcon={<EastIcon />}>Get Premium Access Now</CtaButton>
+          <CtaButton
+            component={Link}
+            to={`/checkout/course-${course.id}`}
+            endIcon={<EastIcon />}
+          >
+            Get Premium Access Now
+          </CtaButton>
         </Grid>
         <Grid item sm={12} md={6}>
           <CardMedia

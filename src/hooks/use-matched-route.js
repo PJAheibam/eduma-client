@@ -11,5 +11,5 @@ export function useMatchedRoute(patterns) {
     }
   }
 
-  return "/";
+  return null;
 }
