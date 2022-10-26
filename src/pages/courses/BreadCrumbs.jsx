@@ -5,6 +5,7 @@ import {
   Box,
 } from "@mui/material";
 import { useLocation, Link } from "react-router-dom";
+import HomeIcon from "@mui/icons-material/Home";
 
 const BreadCrumbs = ({ courses }) => {
   let path = "";
@@ -14,12 +15,19 @@ const BreadCrumbs = ({ courses }) => {
   const paths = pathname.split("/");
 
   return (
-    <Box margin={3}>
+    <Box
+      margin={3}
+      sx={{
+        display: {
+          xs: "block",
+          sm: "none",
+        },
+      }}
+    >
       <MuiBreadCrumbs>
         {paths.map((name, i) => {
           if (i) path = path + "/" + name;
 
-          console.log(path);
           return (
             <MuiLink
               key={i}
@@ -27,13 +35,17 @@ const BreadCrumbs = ({ courses }) => {
               textTransform="capitalize"
               component={Link}
             >
-              {isNaN(parseInt(name))
-                ? !name
-                  ? "Home"
-                  : name
-                : courses
-                ? courses.find((course) => course.id === parseInt(name))?.name
-                : ""}
+              {isNaN(parseInt(name)) ? (
+                !name ? (
+                  <HomeIcon />
+                ) : (
+                  name
+                )
+              ) : courses ? (
+                courses.find((course) => course.id === parseInt(name))?.name
+              ) : (
+                ""
+              )}
             </MuiLink>
           );
         })}

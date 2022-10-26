@@ -14,17 +14,23 @@ import SchoolIcon from "@mui/icons-material/School";
 import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import LiveHelpIcon from "@mui/icons-material/LiveHelp";
 
-const NavTabs = () => {
+const NavTabs = ({ handleClose }) => {
   const currentTab = useMatchedRoute(["/", "/courses", "/blog", "/faq"]);
   return (
     <List component="nav">
-      <ListItemButton selected={currentTab === "/"} to="/" component={Link}>
+      <ListItemButton
+        onClick={handleClose}
+        selected={currentTab === "/"}
+        to="/"
+        component={Link}
+      >
         <ListItemIcon>
           <HomeIcon />
         </ListItemIcon>
         <ListItemText>Home</ListItemText>
       </ListItemButton>
       <ListItemButton
+        onClick={handleClose}
         selected={currentTab === "/courses"}
         to="/courses/all"
         component={Link}
@@ -35,6 +41,7 @@ const NavTabs = () => {
         <ListItemText>Courses</ListItemText>
       </ListItemButton>
       <ListItemButton
+        onClick={handleClose}
         selected={currentTab === "/blog"}
         to="/blog"
         component={Link}
@@ -45,6 +52,7 @@ const NavTabs = () => {
         <ListItemText>Blog</ListItemText>
       </ListItemButton>
       <ListItemButton
+        onClick={handleClose}
         selected={currentTab === "/faq"}
         to="/faq"
         component={Link}

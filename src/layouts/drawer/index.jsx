@@ -16,7 +16,7 @@ const MenuDrawer = ({ open, handleClose }) => {
           </IconButton>
         </Box>
 
-        <NavTabs />
+        <NavTabs handleClose={handleClose} />
       </Box>
     </Drawer>
   );

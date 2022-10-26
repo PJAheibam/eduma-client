@@ -59,7 +59,7 @@ const Course = () => {
         md: 0,
       }}
     >
-      <Grid container>
+      <Grid container spacing={3}>
         <Grid
           item
           sm={12}
