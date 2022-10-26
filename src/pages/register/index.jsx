@@ -14,6 +14,7 @@ import { Link, Navigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { useAuth } from "../../context/AuthContext";
 import { registrationSchema } from "../../schemas/registration-from";
+import { GoogleAuthProvider } from "firebase/auth";
 //icons
 import GoogleIcon from "@mui/icons-material/Google";
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -28,7 +29,9 @@ const initialFormValue = {
 };
 
 const Register = () => {
-  const { createUser, loading, user } = useAuth();
+  const { createUser, loading, user, popupSignIn } = useAuth();
+  const googleProvider = new GoogleAuthProvider();
+
   const {
     values,
     errors,
@@ -50,6 +53,9 @@ const Register = () => {
     } catch (err) {
       console.error(err);
     }
+  }
+  function handleGoogleSignIn() {
+    popupSignIn(googleProvider);
   }
 
   if (loading) return <Loading />;
@@ -181,7 +187,7 @@ const Register = () => {
             </Typography>
             <Stack direction="row" spacing={2} alignItems="center">
               <Typography>Create an account with</Typography>
-              <IconButton>
+              <IconButton onClick={handleGoogleSignIn}>
                 <GoogleIcon color="warning" />
               </IconButton>
               <IconButton>

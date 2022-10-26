@@ -8,6 +8,7 @@ import {
   Typography,
   colors,
 } from "@mui/material";
+import { useAuth } from "../../context/AuthContext";
 
 const Image = styled("img")`
   height: 150px;
@@ -37,6 +38,8 @@ const PaymentItem = styled(Grid)`
 `;
 
 const PaymentMethod = () => {
+  const { user, loading } = useAuth();
+
   return (
     <Grid
       item
@@ -54,14 +57,14 @@ const PaymentMethod = () => {
             readOnly: true,
           }}
           label="Full Name"
-          value="PJ"
+          value={user?.displayName}
         />
         <TextField
           InputProps={{
             readOnly: true,
           }}
           label="Email"
-          value="example@gmail.com"
+          value={user?.email}
         />
       </Stack>
       <Typography component="h1" variant="h4" marginY={3}>
