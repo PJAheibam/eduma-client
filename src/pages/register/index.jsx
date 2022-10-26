@@ -48,32 +48,40 @@ const Register = () => {
   }
 
   return (
-    <Grid
-      container
+    <Box
       component="main"
       sx={{
         minHeight: "calc(100vh - 64px)",
-        width: "100%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
       }}
     >
-      <Grid item xs={12} sm={6} md={8}></Grid>
-      <Grid item xs={12} sm={6} md={4}>
-        <Paper
-          elevation={1}
-          component="form"
-          onSubmit={handleSubmit}
-          sx={{
-            minHeight: "calc(100vh - 64px)",
-            maxHeight: "fit-content",
-            padding: 3,
-            borderRadius: 0,
-            boxShadow: "none",
-          }}
-        >
-          <Typography variant="h4" component="h1" marginBottom={4}>
-            Register
-          </Typography>
-          <Stack spacing={2}>
+      <Paper
+        elevation={6}
+        component="form"
+        onSubmit={handleSubmit}
+        sx={{
+          padding: 3,
+          borderRadius: {
+            xs: 0,
+            sm: "6px",
+          },
+          height: {
+            xs: "calc(100vh - 64px)",
+            sm: "fit-content",
+          },
+          width: {
+            xs: "100%",
+            sm: "400px",
+          },
+        }}
+      >
+        <Typography variant="h4" component="h1" marginBottom={4}>
+          Register
+        </Typography>
+        <Stack spacing={2}>
+          <Stack spacing={3} direction={{ xs: "column", sm: "row" }}>
             <TextField
               autoComplete="off"
               size="small"
@@ -104,19 +112,22 @@ const Register = () => {
                 errors.lastName && touched.lastName ? errors.lastName : null
               }
             />
-            <TextField
-              autoComplete="off"
-              size="small"
-              variant="standard"
-              label="Email"
-              name="email"
-              type="email"
-              value={values.email}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              error={errors.email && touched.email}
-              helperText={errors.email && touched.email ? errors.email : null}
-            />
+          </Stack>
+          <TextField
+            autoComplete="off"
+            size="small"
+            variant="standard"
+            label="Email"
+            name="email"
+            type="email"
+            value={values.email}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            error={errors.email && touched.email}
+            helperText={errors.email && touched.email ? errors.email : null}
+          />
+
+          <Stack spacing={3} direction={{ xs: "column", sm: "row" }}>
             <TextField
               autoComplete="off"
               size="small"
@@ -149,30 +160,31 @@ const Register = () => {
                   : null
               }
             />
-            <Button disabled={isSubmitting} type="submit" variant="contained">
-              Register
-            </Button>
-            <Stack spacing={1} paddingTop={2}>
-              <Typography>
-                Already have an account?{" "}
-                <MuiLink to="/login" component={Link}>
-                  Logn In
-                </MuiLink>
-              </Typography>
-              <Stack direction="row" spacing={2} alignItems="center">
-                <Typography>Create an account with</Typography>
-                <IconButton>
-                  <GoogleIcon color="warning" />
-                </IconButton>
-                <IconButton>
-                  <FacebookIcon color="primary" />
-                </IconButton>
-              </Stack>
+          </Stack>
+
+          <Button disabled={isSubmitting} type="submit" variant="contained">
+            Register
+          </Button>
+          <Stack spacing={1} paddingTop={2}>
+            <Typography>
+              Already have an account?{" "}
+              <MuiLink to="/login" component={Link}>
+                Logn In
+              </MuiLink>
+            </Typography>
+            <Stack direction="row" spacing={2} alignItems="center">
+              <Typography>Create an account with</Typography>
+              <IconButton>
+                <GoogleIcon color="warning" />
+              </IconButton>
+              <IconButton>
+                <FacebookIcon color="primary" />
+              </IconButton>
             </Stack>
           </Stack>
-        </Paper>
-      </Grid>
-    </Grid>
+        </Stack>
+      </Paper>
+    </Box>
   );
 };
 
