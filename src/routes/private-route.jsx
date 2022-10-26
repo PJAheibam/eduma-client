@@ -6,7 +6,7 @@ import Loading from "../pages/loading";
 const PrivateRoute = ({ children }) => {
   const { loading, user } = useAuth();
   const location = useLocation();
-  console.info(user);
+  // console.info(user);
   if (loading) return <Loading />;
   if (user && user?.uid) return children;
   return <Navigate to="/login" state={{ from: location }} replace />;

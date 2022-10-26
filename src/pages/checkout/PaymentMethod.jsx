@@ -57,14 +57,14 @@ const PaymentMethod = () => {
             readOnly: true,
           }}
           label="Full Name"
-          value={user?.displayName}
+          value={user?.displayName ? user?.displayName : ""}
         />
         <TextField
           InputProps={{
             readOnly: true,
           }}
           label="Email"
-          value={user?.email}
+          value={user?.email ? user?.email : ""}
         />
       </Stack>
       <Typography component="h1" variant="h4" marginY={3}>
