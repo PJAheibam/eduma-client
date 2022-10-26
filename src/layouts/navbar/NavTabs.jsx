@@ -7,7 +7,7 @@ const activeNavStyle = (theme) => css`
 
 const NavButton = styled(Button)`
   border-radius: 0;
-  ${(p) => (p.active ? activeNavStyle(p.theme) : null)};
+  ${(p) => (p.active === "true" ? activeNavStyle(p.theme) : null)};
 `;
 
 const NavTabs = () => {
@@ -15,20 +15,28 @@ const NavTabs = () => {
 
   return (
     <Stack spacing={2} direction="row">
-      <NavButton active={pathname === "/"} component={Link} to="/">
+      <NavButton active={(pathname === "/").toString()} component={Link} to="/">
         Home
       </NavButton>
       <NavButton
-        active={pathname.includes("/courses")}
+        active={pathname.includes("/courses").toString()}
         component={Link}
         to="/courses/all"
       >
         Courses
       </NavButton>
-      <NavButton active={pathname === "/blog"} component={Link} to="/blog">
+      <NavButton
+        active={(pathname === "/blog").toString()}
+        component={Link}
+        to="/blog"
+      >
         Blog
       </NavButton>
-      <NavButton active={pathname === "/faq"} component={Link} to="/faq">
+      <NavButton
+        active={(pathname === "/faq").toString()}
+        component={Link}
+        to="/faq"
+      >
         FAQ
       </NavButton>
     </Stack>
