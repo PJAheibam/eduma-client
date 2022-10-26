@@ -5,7 +5,7 @@ import ProgramOverview from "./ProgramOverview";
 
 const Home = () => {
   return (
-    <Stack spacing={6} minHeight="calc(100vh - 56px)">
+    <Stack spacing={8} minHeight="calc(100vh - 56px)">
       <Hero />
       <ProgramOverview />
     </Stack>
