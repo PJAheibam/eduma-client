@@ -19,10 +19,10 @@ const Syllabus = () => {
       justifyContent="space-between"
     >
       <Stack spacing={2} sx={{ maxWidth: "300px" }}>
-        <Typography variant="h4" textTransform="uppercase">
+        <Typography color="white" variant="h4" textTransform="uppercase">
           Syllabus
         </Typography>
-        <Typography>
+        <Typography color="white">
           On a daily basis we talk to companies to fine tune our curriculum.
           Here are the list of courses that are part of this program
         </Typography>
