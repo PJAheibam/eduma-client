@@ -14,7 +14,6 @@ const Footer = () => {
         minHeight: "100px",
         padding: 3,
         paddingInline: "max(24px, calc((100vw - 1400px)/2))",
-        marginTop: "5rem",
       }}
       elevation={6}
       spacing={2}
