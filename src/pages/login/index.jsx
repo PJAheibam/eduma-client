@@ -13,10 +13,11 @@ import {
 //icons
 import GoogleIcon from "@mui/icons-material/Google";
 import FacebookIcon from "@mui/icons-material/Facebook";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { loginSchema } from "../../schemas/login-form";
 import { useAuth } from "../../context/AuthContext";
+import Loading from "../loading";
 
 const InputField = (props) => {
   return (
@@ -24,10 +25,10 @@ const InputField = (props) => {
   );
 };
 const Login = () => {
+  const { handleLogin, setLoading, user, loading } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
-  const { handleLogin, setLoading } = useAuth();
   const {
     values,
     handleSubmit,
@@ -56,6 +57,8 @@ const Login = () => {
         console.info(error);
       });
   }
+  if (loading) return <Loading />;
+  if (user && user.uid) return <Navigate to="/" />;
   return (
     <Box
       component="main"

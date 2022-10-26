@@ -11,6 +11,7 @@ export default function Global({ theme }) {
           margin: 0;
           color: ${theme.palette.text.primary};
           background-color: ${theme.palette.background.default};
+          font-family: "Roboto", "Helvetica", "Arial", sans-serif;
         }
         .MuiTabs-indicator {
           left: 0;

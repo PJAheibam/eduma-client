@@ -10,13 +10,14 @@ import {
   Link as MuiLink,
 } from "@mui/material";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { useAuth } from "../../context/AuthContext";
 import { registrationSchema } from "../../schemas/registration-from";
 //icons
 import GoogleIcon from "@mui/icons-material/Google";
 import FacebookIcon from "@mui/icons-material/Facebook";
+import Loading from "../loading";
 
 const initialFormValue = {
   firstName: "",
@@ -27,7 +28,7 @@ const initialFormValue = {
 };
 
 const Register = () => {
-  const { createUser } = useAuth();
+  const { createUser, loading, user } = useAuth();
   const {
     values,
     errors,
@@ -43,10 +44,16 @@ const Register = () => {
   });
 
   async function onSubmit(values, action) {
-    const res = await createUser(values.email, values.password);
-    console.info(res.user);
+    try {
+      const res = await createUser(values.email, values.password);
+      console.info(res.user);
+    } catch (err) {
+      console.error(err);
+    }
   }
 
+  if (loading) return <Loading />;
+  if (user && user.uid) return <Navigate to="/" />;
   return (
     <Box
       component="main"
