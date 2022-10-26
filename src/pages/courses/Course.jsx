@@ -53,7 +53,11 @@ const Course = () => {
         padding: 3,
         paddingRight: "max(24px, calc((100vw - 1400px)/2))",
       }}
-      spacing={4}
+      spacing={{
+        xs: 4,
+        sm: 1,
+        md: 0,
+      }}
     >
       <Grid container>
         <Grid
