@@ -22,7 +22,14 @@ const Routes = () => {
           </Route>
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
-          <Route path="checkout/:courseID" element={<Checkout />} />
+          <Route
+            path="checkout/:courseID"
+            element={
+              <PrivateRoute>
+                <Checkout />
+              </PrivateRoute>
+            }
+          />
           <Route path="*" element={<PageNotFound />} />
           <Route></Route>
         </Route>
