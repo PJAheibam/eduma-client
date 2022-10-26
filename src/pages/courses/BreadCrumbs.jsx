@@ -23,7 +23,7 @@ const BreadCrumbs = ({ courses }) => {
           return (
             <MuiLink
               key={i}
-              to={path ? path : "/"}
+              to={path ? (path === "/courses" ? "/courses/all" : path) : "/"}
               textTransform="capitalize"
               component={Link}
             >
