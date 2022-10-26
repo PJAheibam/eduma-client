@@ -39,11 +39,13 @@ const GridItem = ({ course }) => {
             Learn more
           </Button>
           <Button
+            to={`/checkout/course-${course.id}`}
             disableElevation
             size="small"
             variant="contained"
             sx={{ display: "flex", marginLeft: 1, marginBottom: 2 }}
             endIcon={<DoubleArrowIcon />}
+            component={Link}
           >
             Get Premium Access
           </Button>
