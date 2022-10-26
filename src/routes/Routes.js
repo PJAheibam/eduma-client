@@ -10,6 +10,7 @@ import Course from "../pages/courses/Course";
 import Checkout from "../pages/checkout";
 import PrivateRoute from "./private-route";
 import Blog from "../pages/blog";
+import Faq from "../pages/faq";
 
 const Routes = () => {
   return (
@@ -37,6 +38,7 @@ const Routes = () => {
             }
           />
           <Route path="blog" element={<Blog />} />
+          <Route path="faq" element={<Faq />} />
           <Route path="*" element={<PageNotFound />} />
         </Route>
       </RouteWrapper>
