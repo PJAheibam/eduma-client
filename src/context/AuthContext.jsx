@@ -5,6 +5,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  signInWithPopup,
 } from "firebase/auth";
 import { auth } from "../features/auth/Auth";
 
@@ -35,6 +36,9 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   }
+  function popupSignIn(provider) {
+    return signInWithPopup(auth, provider);
+  }
   const values = {
     user,
     loading,
@@ -42,6 +46,7 @@ const AuthProvider = ({ children }) => {
     createUser,
     logOut,
     handleLogin,
+    popupSignIn,
   };
 
   useEffect(() => {

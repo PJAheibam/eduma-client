@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  Grid,
   TextField,
   Typography,
   Paper,
@@ -18,6 +17,7 @@ import { useFormik } from "formik";
 import { loginSchema } from "../../schemas/login-form";
 import { useAuth } from "../../context/AuthContext";
 import Loading from "../loading";
+import { GoogleAuthProvider } from "firebase/auth";
 
 const InputField = (props) => {
   return (
@@ -25,7 +25,8 @@ const InputField = (props) => {
   );
 };
 const Login = () => {
-  const { handleLogin, setLoading, user, loading } = useAuth();
+  const { handleLogin, setLoading, user, loading, popupSignIn } = useAuth();
+  const googleProvider = new GoogleAuthProvider();
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
@@ -56,6 +57,12 @@ const Login = () => {
       .catch((error) => {
         console.info(error);
       });
+  }
+
+  function handleGoogleSignIn() {
+    popupSignIn(googleProvider)
+      .then((res) => console.log(res))
+      .catch((err) => console.error(err));
   }
   if (loading) return <Loading />;
   if (user && user.uid) return <Navigate to="/" />;
@@ -121,7 +128,7 @@ const Login = () => {
         </Stack>
         <Stack marginTop={3} spacing={2} direction="row" alignItems="center">
           <Typography>Login with</Typography>
-          <IconButton>
+          <IconButton onClick={handleGoogleSignIn}>
             <GoogleIcon color="warning" />
           </IconButton>
           <IconButton>

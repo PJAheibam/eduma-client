@@ -121,7 +121,7 @@ const Navbar = () => {
             aria-haspopup="true"
             aria-expanded={isUserMenuOpne ? "true" : undefined}
           >
-            <Avatar src={userIcon} />
+            <Avatar src={user?.photoURL ? user.photoURL : userIcon} />
           </IconButton>
           <Menu
             id="user-profile-menu"
@@ -134,7 +134,7 @@ const Navbar = () => {
               disabled
               sx={{ display: user?.displayName ? "block" : "none" }}
             >
-              Hi PJ
+              {user?.displayName}
             </MenuItem>
             <MenuItem onClick={closeUserMenu}>
               <ListItemIcon>
