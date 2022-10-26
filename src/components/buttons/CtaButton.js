@@ -11,6 +11,7 @@ export default styled(Button)`
   text-transform: uppercase;
   color: white;
   display: flex;
+  z-index: 1;
   &::after,
   &::before {
     position: absolute;

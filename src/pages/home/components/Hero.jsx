@@ -1,15 +1,6 @@
-import { styled, Box, Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import React from "react";
-// import { Carousel } from "react-responsive-carousel";
-import Slider from "react-slick";
-import dots1 from "../../assets/images/dots-wave-1.jpg";
-import dots2 from "../../assets/images/dots-wave-2.jpg";
-import vrGlass from "../../assets/images/vr-glass.jpg";
-
-const Image = styled("img")`
-  width: 100%;
-  aspect-ratio: 815/419;
-`;
+import dots2 from "../../../assets/images/dots-wave-2.jpg";
 
 const Hero = () => {
   const settings = {
