@@ -14,7 +14,11 @@ import { Link, Navigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { useAuth } from "../../context/AuthContext";
 import { registrationSchema } from "../../schemas/registration-from";
-import { GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  GithubAuthProvider,
+  updateProfile,
+} from "firebase/auth";
 //icons
 import GoogleIcon from "@mui/icons-material/Google";
 import GitHubIcon from "@mui/icons-material/GitHub";
@@ -50,7 +54,9 @@ const Register = () => {
   async function onSubmit(values, action) {
     try {
       const res = await createUser(values.email, values.password);
-      console.info(res.user);
+      await updateProfile(res.user, {
+        displayName: values.firstName + " " + values.lastName,
+      });
     } catch (err) {
       console.error(err);
     }
