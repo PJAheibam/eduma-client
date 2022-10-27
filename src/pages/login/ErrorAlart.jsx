@@ -24,7 +24,7 @@ const ErrorAlart = ({ error }) => {
         }
         sx={{ mb: 2 }}
       >
-        User email/password is incorrect!
+        {error}
       </Alert>
     </Collapse>
   );

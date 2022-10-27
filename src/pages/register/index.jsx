@@ -8,6 +8,8 @@ import {
   Button,
   IconButton,
   Link as MuiLink,
+  Alert,
+  Avatar,
 } from "@mui/material";
 import React from "react";
 import { Link, Navigate } from "react-router-dom";
@@ -23,6 +25,9 @@ import {
 import GoogleIcon from "@mui/icons-material/Google";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import Loading from "../loading";
+import nullUserPic from "../../assets/icons/user-icon-1.png";
+import { useState } from "react";
+import ErrorAlert from "../login/ErrorAlart";
 
 const initialFormValue = {
   firstName: "",
@@ -33,9 +38,18 @@ const initialFormValue = {
 };
 
 const Register = () => {
-  const { createUser, loading, user, popupSignIn } = useAuth();
+  const {
+    createUser,
+    loading,
+    setLoading,
+    user,
+    popupSignIn,
+    uploadProfilePic,
+  } = useAuth();
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
+  const [error, setError] = useState("");
+  const [photo, setPhoto] = useState(null);
 
   const {
     values,
@@ -50,15 +64,23 @@ const Register = () => {
     validationSchema: registrationSchema,
     onSubmit,
   });
-
+  function handleFileChange(e) {
+    if (e.target.files[0]) {
+      setPhoto(e.target.files[0]);
+    }
+  }
   async function onSubmit(values, action) {
     try {
       const res = await createUser(values.email, values.password);
+      const photoURL = await uploadProfilePic(res.user, photo);
       await updateProfile(res.user, {
         displayName: values.firstName + " " + values.lastName,
+        photoURL,
       });
     } catch (err) {
       console.error(err);
+      setError("user email is already in use");
+      setLoading(false);
     }
   }
   function handleGoogleSignIn() {
@@ -190,9 +212,23 @@ const Register = () => {
             />
           </Stack>
 
+          <Stack spacing={3}>
+            <Button variant="outlined" component="label">
+              Upload Profile Pic
+              <input
+                hidden
+                accept="image/*"
+                multiple
+                type="file"
+                onChange={handleFileChange}
+              />
+            </Button>
+            {photo && <TextField size="small" disabled value={photo.name} />}
+          </Stack>
           <Button disabled={isSubmitting} type="submit" variant="contained">
             Register
           </Button>
+          <ErrorAlert error={error} />
           <Stack spacing={1} paddingTop={2}>
             <Typography>
               Already have an account?{" "}

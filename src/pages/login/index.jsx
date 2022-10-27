@@ -59,7 +59,7 @@ const Login = () => {
         // console.info(res);
       })
       .catch((err) => {
-        setError(err);
+        setError("user email/password is not matched");
         console.error(err);
         setLoading(false);
       });

@@ -125,7 +125,11 @@ const Navbar = () => {
             aria-haspopup="true"
             aria-expanded={isUserMenuOpne ? "true" : undefined}
           >
-            <Avatar src={user?.photoURL ? user.photoURL : userIcon} />
+            <Avatar
+              src={
+                loading ? userIcon : user?.photoURL ? user.photoURL : userIcon
+              }
+            />
           </IconButton>
           <Menu
             id="user-profile-menu"
