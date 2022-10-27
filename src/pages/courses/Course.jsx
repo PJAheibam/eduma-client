@@ -86,7 +86,7 @@ const Course = () => {
             component="img"
             width="100%"
             height={300}
-            image="https://source.unsplash.com/random/300×300/?coding"
+            image={course?.imageURL}
           />
         </Grid>
       </Grid>
