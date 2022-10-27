@@ -18,6 +18,8 @@ import { loginSchema } from "../../schemas/login-form";
 import { useAuth } from "../../context/AuthContext";
 import Loading from "../loading";
 import { GoogleAuthProvider } from "firebase/auth";
+import { useState } from "react";
+import ErrorAlart from "./ErrorAlart";
 
 const InputField = (props) => {
   return (
@@ -30,6 +32,7 @@ const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
+  const [error, setError] = useState("");
   const {
     values,
     handleSubmit,
@@ -54,8 +57,10 @@ const Login = () => {
         navigate(from, { replace: true });
         // console.info(res);
       })
-      .catch((error) => {
-        console.info(error);
+      .catch((err) => {
+        setError(err);
+        console.error(err);
+        setLoading(false);
       });
   }
 
@@ -66,6 +71,7 @@ const Login = () => {
   }
   if (loading) return <Loading />;
   if (user && user.uid) return <Navigate to="/" />;
+
   return (
     <Box
       component="main"
@@ -99,6 +105,7 @@ const Login = () => {
         <Typography variant="h4" component="h1" marginBottom={4}>
           Login
         </Typography>
+        <ErrorAlart error={error} />
         <Stack spacing={2}>
           <InputField
             name="email"

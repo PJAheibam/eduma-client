@@ -14,7 +14,7 @@ import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
 const GridItem = ({ course }) => {
   const { imageURL, name, desc, id } = course;
   return (
-    <Grid item xs={12} sm={6} md={4}>
+    <Grid item xs={12} sm={12} md={4}>
       <Card
         elevation={4}
         sx={{ height: "100%", display: "flex", flexDirection: "column" }}
