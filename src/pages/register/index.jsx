@@ -14,10 +14,10 @@ import { Link, Navigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { useAuth } from "../../context/AuthContext";
 import { registrationSchema } from "../../schemas/registration-from";
-import { GoogleAuthProvider } from "firebase/auth";
+import { GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
 //icons
 import GoogleIcon from "@mui/icons-material/Google";
-import FacebookIcon from "@mui/icons-material/Facebook";
+import GitHubIcon from "@mui/icons-material/GitHub";
 import Loading from "../loading";
 
 const initialFormValue = {
@@ -31,6 +31,7 @@ const initialFormValue = {
 const Register = () => {
   const { createUser, loading, user, popupSignIn } = useAuth();
   const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
 
   const {
     values,
@@ -55,7 +56,15 @@ const Register = () => {
     }
   }
   function handleGoogleSignIn() {
-    popupSignIn(googleProvider);
+    popupSignIn(googleProvider)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  }
+
+  function handleGitHubSignIn() {
+    popupSignIn(githubProvider)
+      .then((res) => console.log(res))
+      .catch((err) => console.error(err));
   }
 
   if (loading) return <Loading />;
@@ -190,8 +199,8 @@ const Register = () => {
               <IconButton onClick={handleGoogleSignIn}>
                 <GoogleIcon color="warning" />
               </IconButton>
-              <IconButton>
-                <FacebookIcon color="primary" />
+              <IconButton onClick={handleGitHubSignIn}>
+                <GitHubIcon color="primary" />
               </IconButton>
             </Stack>
           </Stack>

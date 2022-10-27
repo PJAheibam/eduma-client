@@ -11,13 +11,13 @@ import {
 } from "@mui/material";
 //icons
 import GoogleIcon from "@mui/icons-material/Google";
-import FacebookIcon from "@mui/icons-material/Facebook";
+import GitHubIcon from "@mui/icons-material/GitHub";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { loginSchema } from "../../schemas/login-form";
 import { useAuth } from "../../context/AuthContext";
 import Loading from "../loading";
-import { GoogleAuthProvider } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import { useState } from "react";
 import ErrorAlart from "./ErrorAlart";
 
@@ -29,6 +29,7 @@ const InputField = (props) => {
 const Login = () => {
   const { handleLogin, setLoading, user, loading, popupSignIn } = useAuth();
   const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
@@ -69,6 +70,13 @@ const Login = () => {
       .then((res) => console.log(res))
       .catch((err) => console.error(err));
   }
+
+  function handleGitHubSignIn() {
+    popupSignIn(githubProvider)
+      .then((res) => console.log(res))
+      .catch((err) => console.error(err));
+  }
+
   if (loading) return <Loading />;
   if (user && user.uid) return <Navigate to="/" />;
 
@@ -138,8 +146,8 @@ const Login = () => {
           <IconButton onClick={handleGoogleSignIn}>
             <GoogleIcon color="warning" />
           </IconButton>
-          <IconButton>
-            <FacebookIcon color="primary" />
+          <IconButton onClick={handleGitHubSignIn}>
+            <GitHubIcon color="primary" />
           </IconButton>
         </Stack>
         <Typography marginTop={3} color="text.secondary">
