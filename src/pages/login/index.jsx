@@ -12,7 +12,12 @@ import {
 //icons
 import GoogleIcon from "@mui/icons-material/Google";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import {
+  Link as RrdLink,
+  Navigate,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import { useFormik } from "formik";
 import { loginSchema } from "../../schemas/login-form";
 import { useAuth } from "../../context/AuthContext";
@@ -33,7 +38,7 @@ const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
-  console.log(from + " -> Login");
+  // console.log(from + " -> Login");
   const [error, setError] = useState("");
   const {
     values,
@@ -85,9 +90,8 @@ const Login = () => {
       .catch((err) => console.error(err));
   }
   function navigateToRegister() {
-    console.log(from);
     navigate("/register", {
-      state: { from },
+      state: { from: location.state?.from },
     });
   }
   if (loading) return <Loading />;
@@ -101,6 +105,7 @@ const Login = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        m: 3,
       }}
     >
       <Paper

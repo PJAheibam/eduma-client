@@ -27,8 +27,8 @@ const Syllabus = () => {
           Here are the list of courses that are part of this program
         </Typography>
       </Stack>
-      <Box>
-        <CtaButton>Download Syllabus</CtaButton>
+      <Box display="flex">
+        <CtaButton sx={{ my: "auto" }}>Download Syllabus</CtaButton>
       </Box>
     </Container>
   );

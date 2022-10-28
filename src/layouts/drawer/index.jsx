@@ -5,7 +5,7 @@ import NavTabs from "./NavTabs";
 
 const MenuDrawer = ({ open, handleClose }) => {
   return (
-    <Drawer anchor="left" open={open} onClose={handleClose}>
+    <Drawer anchor="right" open={open} onClose={handleClose}>
       <Box role="presentation" minWidth={300} padding={3}>
         <Box display="flex" justifyContent="space-between" alignItems="center">
           <Typography variant="h5" component="h1">

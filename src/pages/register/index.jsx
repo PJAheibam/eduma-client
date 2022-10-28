@@ -42,7 +42,7 @@ const Register = () => {
   const [error, setError] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
-  const from = location.state?.from.pathname || "/";
+  const from = location.state?.from?.pathname || "/";
 
   // console.log(from + "->reg");
 

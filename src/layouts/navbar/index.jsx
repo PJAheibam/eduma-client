@@ -33,6 +33,7 @@ import { useToggleTheme } from "../../context/theme-context";
 import { useState } from "react";
 import MenuDrawer from "../drawer";
 import NavTabs from "./NavTabs";
+import Logo from "../../components/logo";
 
 const Navbar = () => {
   const { user, logOut, loading } = useAuth();
@@ -72,20 +73,22 @@ const Navbar = () => {
         <Toolbar sx={{ paddingInline: "20px" }}>
           <Stack direction="row" spacing={2} sx={{ flexGrow: 1 }}>
             <Box to="/" component={Link}>
-              {" "}
-              <img height="40px" src={logo} alt="Logo" />{" "}
+              <Logo />
             </Box>
           </Stack>
 
           <NavTabs />
 
-          <IconButton sx={{ marginRight: 2 }} onClick={toggleTheme}>
-            {theme.palette.mode === "dark" ? (
-              <LightModeIcon />
-            ) : (
-              <DarkModeIcon />
-            )}
-          </IconButton>
+          {/* TOGGLE THEME */}
+          <Tooltip title="Toggle Theme" sx={{ mr: 1 }}>
+            <IconButton size="large" onClick={toggleTheme}>
+              {theme.palette.mode === "dark" ? (
+                <LightModeIcon />
+              ) : (
+                <DarkModeIcon />
+              )}
+            </IconButton>
+          </Tooltip>
 
           {/* LOGIN - REGISTER BUTTON */}
           <Stack
@@ -121,6 +124,7 @@ const Navbar = () => {
             leaveDelay={200}
           >
             <IconButton
+              size="small"
               id="user-menu-button"
               sx={{ display: loading ? "none" : user?.uid ? "block" : "none" }}
               onClick={openUserMenu}
@@ -181,13 +185,14 @@ const Navbar = () => {
               <ListItemText>Logout</ListItemText>
             </MenuItem>
           </Menu>
+
           <IconButton
             sx={{
               display: {
                 xs: "flex",
                 md: "none",
               },
-              marginLeft: "1rem",
+              ml: 1,
             }}
             onClick={toggleMenu}
           >

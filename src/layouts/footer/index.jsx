@@ -1,6 +1,6 @@
 import { Button, Link as MuiLink, Paper, Stack } from "@mui/material";
 import React from "react";
-import logo from "../../assets/images/logo.png";
+import Logo from "../../components/logo";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -19,7 +19,7 @@ const Footer = () => {
       spacing={2}
     >
       <MuiLink to="/" component={Link}>
-        <img src={logo} />
+        <Logo />
       </MuiLink>
       <Stack direction="row" spacing={2}>
         <Button to="/" component={Link}>
