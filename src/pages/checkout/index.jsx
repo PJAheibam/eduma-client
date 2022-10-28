@@ -4,6 +4,7 @@ import OrderSummery from "./OrderSummery";
 import PaymentMethod from "./PaymentMethod";
 import PageNotFound from "../page-not-found";
 import { useParams } from "react-router-dom";
+import Loading from "../loading";
 
 const Checkout = () => {
   const { courseID } = useParams();
@@ -27,12 +28,14 @@ const Checkout = () => {
     fetchData();
   }, []);
 
+  if (loading) return <Loading />;
+
   if (!course) return <PageNotFound />;
 
   return (
     <Grid container>
       <PaymentMethod />
-      <OrderSummery course={course} loading={loading} />
+      <OrderSummery course={course} />
     </Grid>
   );
 };

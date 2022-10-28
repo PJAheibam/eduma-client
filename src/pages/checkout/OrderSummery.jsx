@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import CtaButton from "../../components/buttons/CtaButton";
 import { Stack } from "@mui/system";
 
-const OrderSummery = ({ course, loading }) => {
+const OrderSummery = ({ course }) => {
   return (
     <Grid
       item
