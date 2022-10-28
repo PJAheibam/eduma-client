@@ -1,30 +1,9 @@
 import { Grid, Typography, Box, Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import CtaButton from "../../components/buttons/CtaButton";
-import { useParams } from "react-router-dom";
 import { Stack } from "@mui/system";
 
-const OrderSummery = () => {
-  const { courseID } = useParams();
-  const [loading, setLoading] = useState(true);
-  const [course, setCourse] = useState(null);
-
-  async function fetchData() {
-    try {
-      const res = await fetch(
-        `${process.env.REACT_APP_PORT}/courses/${courseID.split(`-`)[1]}`
-      );
-      const data = await res.json();
-      setCourse(data);
-    } catch (err) {
-      console.warn(err);
-    } finally {
-      setLoading(false);
-    }
-  }
-  useEffect(() => {
-    fetchData();
-  }, []);
+const OrderSummery = ({ course, loading }) => {
   return (
     <Grid
       item
