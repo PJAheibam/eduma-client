@@ -2,10 +2,7 @@ import React from "react";
 import {
   AppBar,
   Toolbar,
-  Tabs,
-  Tab,
   Button,
-  Typography,
   Box,
   Stack,
   IconButton,
@@ -15,6 +12,7 @@ import {
   MenuItem,
   ListItemText,
   ListItemIcon,
+  Tooltip,
 } from "@mui/material";
 
 //icons
@@ -59,6 +57,8 @@ const Navbar = () => {
   function toggleMenu() {
     setMenuOpen((prev) => !prev);
   }
+
+  console.log(user);
 
   return (
     <>
@@ -115,22 +115,32 @@ const Navbar = () => {
           </Stack>
 
           {/* USER PROFILE ICON BUTTON */}
-          <IconButton
-            id="user-menu-button"
-            sx={{ display: loading ? "none" : user?.uid ? "block" : "none" }}
-            onClick={openUserMenu}
-            title="User Menu"
-            aria-label="User Menu"
-            aria-controls={isUserMenuOpne ? "user-profile-menu" : undefined}
-            aria-haspopup="true"
-            aria-expanded={isUserMenuOpne ? "true" : undefined}
+          <Tooltip
+            title={loading ? "User" : user?.uid ? user.displayName : "User"}
+            enterDelay={500}
+            leaveDelay={200}
           >
-            <Avatar
-              src={
-                loading ? userIcon : user?.photoURL ? user.photoURL : userIcon
-              }
-            />
-          </IconButton>
+            <IconButton
+              id="user-menu-button"
+              sx={{ display: loading ? "none" : user?.uid ? "block" : "none" }}
+              onClick={openUserMenu}
+              aria-label="User Menu"
+              aria-controls={isUserMenuOpne ? "user-profile-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={isUserMenuOpne ? "true" : undefined}
+            >
+              <Avatar
+                alt="Profile Photo"
+                src={
+                  loading
+                    ? userIcon
+                    : user?.uid && user?.photoURL
+                    ? user.photoURL
+                    : userIcon
+                }
+              />
+            </IconButton>
+          </Tooltip>
           <Menu
             id="user-profile-menu"
             open={isUserMenuOpne}

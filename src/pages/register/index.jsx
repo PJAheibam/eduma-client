@@ -8,8 +8,6 @@ import {
   Button,
   IconButton,
   Link as MuiLink,
-  Alert,
-  Avatar,
 } from "@mui/material";
 import React from "react";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
@@ -34,7 +32,7 @@ const initialFormValue = {
   email: "",
   password: "",
   confirmPassword: "",
-  photoURL: null,
+  photoURL: "",
 };
 
 const Register = () => {
@@ -46,7 +44,7 @@ const Register = () => {
   const navigate = useNavigate();
   const from = location.state?.from.pathname || "/";
 
-  console.log(from + "->reg");
+  // console.log(from + "->reg");
 
   const {
     values,
@@ -69,7 +67,7 @@ const Register = () => {
         displayName: values.firstName + " " + values.lastName,
         photoURL: values.photoURL,
       });
-      action.reset();
+      action.resetForm();
       navigate(from, { replace: true });
     } catch (err) {
       console.error(err);
