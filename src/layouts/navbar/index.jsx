@@ -59,8 +59,6 @@ const Navbar = () => {
     setMenuOpen((prev) => !prev);
   }
 
-  console.log(user);
-
   return (
     <>
       <AppBar
