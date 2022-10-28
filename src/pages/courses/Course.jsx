@@ -10,18 +10,17 @@ import {
   ListItemText,
   ListSubheader,
   Button,
-  IconButton,
-  styled,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Loading from "../loading";
 import PageNotFound from "../page-not-found";
 import StarIcon from "@mui/icons-material/Star";
-import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import EastIcon from "@mui/icons-material/East";
 import { CtaButton } from "../../components";
 import pdfDownload from "../../assets/images/pdf-download.png";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import DownloadPDF from "./DownloadPDF";
 
 const Course = () => {
   const params = useParams();
@@ -80,9 +79,27 @@ const Course = () => {
             {course.name}
           </Typography>
           <Typography color="text.secondary">{course.desc}</Typography>
-          <Button sx={{ mt: 3, mx: "auto" }} size="small">
+          {/* <Button sx={{ mt: 3, mx: "auto" }} size="small">
             <img height={50} src={pdfDownload} alt="Download PDF" />
-          </Button>
+          </Button> */}
+          <PDFDownloadLink
+            document={<DownloadPDF course={course} />}
+            fileName="test"
+          >
+            {({ loading, error }) => {
+              if (error) {
+                console.log(error);
+                return <>error!</>;
+              }
+              if (loading) return <button>Loading</button>;
+              else
+                return (
+                  <Button sx={{ mt: 3, mx: "auto" }} size="small">
+                    <img height={50} src={pdfDownload} alt="Download PDF" />
+                  </Button>
+                );
+            }}
+          </PDFDownloadLink>
         </Grid>
         <Grid item sm={12} md={6}>
           <CardMedia

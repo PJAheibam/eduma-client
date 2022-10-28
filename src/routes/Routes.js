@@ -11,7 +11,7 @@ import Checkout from "../pages/checkout";
 import PrivateRoute from "./private-route";
 import Blog from "../pages/blog";
 import Faq from "../pages/faq";
-import DownloadPdf from "../pages/courses/DownloadPdf";
+import DownloadPdf from "../pages/courses/DownloadPDF";
 
 const Routes = () => {
   return (
