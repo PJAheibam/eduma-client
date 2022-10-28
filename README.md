@@ -31,6 +31,7 @@ For front-end
 - Firebase (for authentication)
 - Formik (for form handling)
 - Yup (for form schema)
+- react-pdf
 
 For back-end
 
