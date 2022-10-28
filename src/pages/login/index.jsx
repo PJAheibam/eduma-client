@@ -33,6 +33,7 @@ const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
+  console.log(from + " -> Login");
   const [error, setError] = useState("");
   const {
     values,
@@ -55,6 +56,7 @@ const Login = () => {
     handleLogin(values.email, values.password)
       .then((res) => {
         setLoading(false);
+        console.log(from);
         navigate(from, { replace: true });
         // console.info(res);
       })
@@ -67,16 +69,27 @@ const Login = () => {
 
   function handleGoogleSignIn() {
     popupSignIn(googleProvider)
-      .then((res) => console.log(res))
+      .then((res) => {
+        console.log(res);
+        navigate(from, { replace: true });
+      })
       .catch((err) => console.error(err));
   }
 
   function handleGitHubSignIn() {
     popupSignIn(githubProvider)
-      .then((res) => console.log(res))
+      .then((res) => {
+        console.log(res);
+        navigate(from, { replace: true });
+      })
       .catch((err) => console.error(err));
   }
-
+  function navigateToRegister() {
+    console.log(from);
+    navigate("/register", {
+      state: { from },
+    });
+  }
   if (loading) return <Loading />;
   if (user && user.uid) return <Navigate to="/" />;
 
@@ -152,9 +165,7 @@ const Login = () => {
         </Stack>
         <Typography marginTop={3} color="text.secondary">
           Don't have any account?{" "}
-          <MuiLink to="/register" component={Link}>
-            Register here
-          </MuiLink>{" "}
+          <Button onClick={navigateToRegister}>Register here</Button>{" "}
         </Typography>
       </Paper>
     </Box>

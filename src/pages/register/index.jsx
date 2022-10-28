@@ -12,7 +12,7 @@ import {
   Avatar,
 } from "@mui/material";
 import React from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { useAuth } from "../../context/AuthContext";
 import { registrationSchema } from "../../schemas/registration-from";
@@ -25,7 +25,6 @@ import {
 import GoogleIcon from "@mui/icons-material/Google";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import Loading from "../loading";
-import nullUserPic from "../../assets/icons/user-icon-1.png";
 import { useState } from "react";
 import ErrorAlert from "../login/ErrorAlart";
 
@@ -50,6 +49,11 @@ const Register = () => {
   const githubProvider = new GithubAuthProvider();
   const [error, setError] = useState("");
   const [photo, setPhoto] = useState(null);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from.pathname || "/";
+
+  console.log(from + "->reg");
 
   const {
     values,
@@ -77,6 +81,7 @@ const Register = () => {
         displayName: values.firstName + " " + values.lastName,
         photoURL,
       });
+      navigate(from, { replace: true });
     } catch (err) {
       console.error(err);
       setError("user email is already in use");
@@ -85,13 +90,19 @@ const Register = () => {
   }
   function handleGoogleSignIn() {
     popupSignIn(googleProvider)
-      .then((res) => console.log(res))
+      .then((res) => {
+        console.log(res);
+        navigate(from, { replace: true });
+      })
       .catch((err) => console.log(err));
   }
 
   function handleGitHubSignIn() {
     popupSignIn(githubProvider)
-      .then((res) => console.log(res))
+      .then((res) => {
+        console.log(res);
+        navigate(from, { replace: true });
+      })
       .catch((err) => console.error(err));
   }
 
