@@ -3,7 +3,6 @@ import { styled, Button } from "@mui/material";
 export default styled(Button)`
   position: relative;
   margin-inline: auto;
-  margin-block: 1.5rem;
   padding: 8px 16px;
   border-radius: 20px;
   width: fit-content;

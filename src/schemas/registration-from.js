@@ -11,4 +11,5 @@ export const registrationSchema = yup.object().shape({
     .string()
     .oneOf([yup.ref("password"), null], "Password must be matched")
     .required(REQUIRED),
+  photoURL: yup.string(),
 });

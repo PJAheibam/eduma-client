@@ -34,21 +34,14 @@ const initialFormValue = {
   email: "",
   password: "",
   confirmPassword: "",
+  photoURL: null,
 };
 
 const Register = () => {
-  const {
-    createUser,
-    loading,
-    setLoading,
-    user,
-    popupSignIn,
-    uploadProfilePic,
-  } = useAuth();
+  const { createUser, loading, setLoading, user, popupSignIn } = useAuth();
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
   const [error, setError] = useState("");
-  const [photo, setPhoto] = useState(null);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from.pathname || "/";
@@ -68,19 +61,15 @@ const Register = () => {
     validationSchema: registrationSchema,
     onSubmit,
   });
-  function handleFileChange(e) {
-    if (e.target.files[0]) {
-      setPhoto(e.target.files[0]);
-    }
-  }
+
   async function onSubmit(values, action) {
     try {
       const res = await createUser(values.email, values.password);
-      const photoURL = await uploadProfilePic(res.user, photo);
       await updateProfile(res.user, {
         displayName: values.firstName + " " + values.lastName,
-        photoURL,
+        photoURL: values.photoURL,
       });
+      action.reset();
       navigate(from, { replace: true });
     } catch (err) {
       console.error(err);
@@ -116,6 +105,7 @@ const Register = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        margin: 3,
       }}
     >
       <Paper
@@ -222,29 +212,25 @@ const Register = () => {
               }
             />
           </Stack>
-
-          <Stack spacing={3}>
-            <Button variant="outlined" component="label">
-              Upload Profile Pic
-              <input
-                hidden
-                accept="image/*"
-                multiple
-                type="file"
-                onChange={handleFileChange}
-              />
-            </Button>
-            {photo && <TextField size="small" disabled value={photo.name} />}
-          </Stack>
+          <TextField
+            label="Profile Photo URL"
+            value={values.photoURL}
+            variant="standard"
+            autoComplete="off"
+            name="photoURL"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            helperText="You must provide a valid url or it will show brocken picture"
+          />
           <Button disabled={isSubmitting} type="submit" variant="contained">
             Register
           </Button>
           <ErrorAlert error={error} />
-          <Stack spacing={1} paddingTop={2}>
+          <Stack spacing={1}>
             <Typography>
               Already have an account?{" "}
               <MuiLink to="/login" component={Link}>
-                Logn In
+                Log In
               </MuiLink>
             </Typography>
             <Stack direction="row" spacing={2} alignItems="center">

@@ -21,6 +21,7 @@ import StarIcon from "@mui/icons-material/Star";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import EastIcon from "@mui/icons-material/East";
 import { CtaButton } from "../../components";
+import pdfDownload from "../../assets/images/pdf-download.png";
 
 const Course = () => {
   const params = useParams();
@@ -64,22 +65,24 @@ const Course = () => {
           item
           sm={12}
           md={6}
-          sx={{ display: "flex", flexDirection: "column" }}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
         >
-          <Typography variant="h4" component="h1" textTransform="uppercase">
-            {course.title}
-            <IconButton sx={{ ml: 2 }} variant="outlined" size="large">
-              <PictureAsPdfIcon />
-            </IconButton>
+          <Typography
+            mb={2}
+            variant="h4"
+            component="h1"
+            textTransform="uppercase"
+          >
+            {course.name}
           </Typography>
           <Typography color="text.secondary">{course.desc}</Typography>
-          <CtaButton
-            component={Link}
-            to={`/checkout/course-${course.id}`}
-            endIcon={<EastIcon />}
-          >
-            Get Premium Access Now
-          </CtaButton>
+          <Button sx={{ mt: 3, mx: "auto" }} size="small">
+            <img height={50} src={pdfDownload} alt="Download PDF" />
+          </Button>
         </Grid>
         <Grid item sm={12} md={6}>
           <CardMedia
@@ -113,6 +116,19 @@ const Course = () => {
             </React.Fragment>
           ))}
       </List>
+      <Box
+        sx={{
+          paddingBottom: 3,
+        }}
+      >
+        <CtaButton
+          component={Link}
+          to={`/checkout/course-${course.id}`}
+          endIcon={<EastIcon />}
+        >
+          Get Premium Access Now
+        </CtaButton>
+      </Box>
     </Stack>
   );
 };

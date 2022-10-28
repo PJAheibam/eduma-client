@@ -11,6 +11,7 @@ import Checkout from "../pages/checkout";
 import PrivateRoute from "./private-route";
 import Blog from "../pages/blog";
 import Faq from "../pages/faq";
+import DownloadPdf from "../pages/courses/DownloadPdf";
 
 const Routes = () => {
   return (
@@ -39,6 +40,7 @@ const Routes = () => {
           />
           <Route path="blog" element={<Blog />} />
           <Route path="faq" element={<Faq />} />
+          <Route path="pdf" element={<DownloadPdf />} />
           <Route path="*" element={<PageNotFound />} />
         </Route>
       </RouteWrapper>

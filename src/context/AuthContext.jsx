@@ -1,13 +1,11 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import {
-  getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
   signInWithPopup,
 } from "firebase/auth";
-import { uploadBytes, getStorage, ref, getDownloadURL } from "firebase/storage";
 import { auth } from "../features/auth/Auth";
 
 const AuthContext = createContext();
@@ -17,7 +15,6 @@ export const useAuth = () => useContext(AuthContext);
 const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
-  const storage = getStorage();
   // FUNCTIONS
   function createUser(email, password) {
     setLoading(true);
@@ -42,13 +39,6 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, provider);
   }
 
-  async function uploadProfilePic(currentUser, file) {
-    const fileRef = ref(storage, currentUser.uid + ".png");
-    const snapshot = await uploadBytes(fileRef, file);
-    // console.log(file);
-    return await getDownloadURL(fileRef);
-  }
-
   const values = {
     user,
     loading,
@@ -57,7 +47,6 @@ const AuthProvider = ({ children }) => {
     logOut,
     handleLogin,
     popupSignIn,
-    uploadProfilePic,
   };
 
   useEffect(() => {
