@@ -12,8 +12,9 @@ import { useAuth } from "../../context/AuthContext";
 
 const Image = styled("img")`
   height: 150px;
+  image-resolution: from-image 100dpi;
   aspect-ratio: 16/9;
-  object-fit: cover;
+  object-fit: contain;
 `;
 
 const ImageButton = styled("button")`
@@ -33,7 +34,7 @@ const PaymentItem = styled(Grid)`
   overflow: hidden;
   transition: filter 300ms ease;
   &:hover {
-    filter: drop-shadow(0px 10px 5px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(0 5px 5px ${(p) => p.theme.palette.primary.dark});
   }
 `;
 
@@ -76,50 +77,38 @@ const PaymentMethod = () => {
         alignItems="center"
         sx={{ p: 3, pl: "max(24px, calc((100vw - 1400px)/2))" }}
       >
-        <PaymentItem item xs={12} sm={6} md={4}>
+        <PaymentItem item sm={12} md={6}>
           <ImageButton>
             <Image
-              src={process.env.REACT_APP_PORT + "/images/bkash-logo.png"}
+              src="https://seeklogo.com/images/B/bkash-logo-FBB258B90F-seeklogo.com.png"
               alt="bkash payment"
             />
           </ImageButton>
         </PaymentItem>
-        <PaymentItem item xs={12} sm={6} md={4}>
+        <PaymentItem item sm={12} md={6}>
           <ImageButton>
             <Image
               style={{
                 objectFit: "cover",
               }}
-              src={process.env.REACT_APP_PORT + "/images/rocket-logo.png"}
+              src="https://bestlistbd.com/wp-content/uploads/classified-listing/2021/06/56191305_1074649016065535_8893606934653960192_n-3.jpg"
               alt="Rocket Payment"
             />
           </ImageButton>
         </PaymentItem>
-        <PaymentItem item xs={12} sm={6} md={4}>
+        <PaymentItem item sm={12} md={6}>
           <ImageButton>
             <Image
-              src={process.env.REACT_APP_PORT + "/images/nogod-logo.svg"}
+              src="https://www.logo.wine/a/logo/Nagad/Nagad-Logo.wine.svg"
               alt="Nogod Payment"
             />
           </ImageButton>
         </PaymentItem>
-        <PaymentItem item xs={12} sm={6} md={4}>
+        <PaymentItem item sm={12} md={6}>
           <ImageButton>
             <Image
-              src={process.env.REACT_APP_PORT + "/images/visa-card.png"}
+              src="https://www.seekpng.com/png/full/321-3214934_visa-mastercard-amex-logo-vector-visa-card-logo.png"
               alt="Visa Card Payment"
-            />
-          </ImageButton>
-        </PaymentItem>
-        <PaymentItem item xs={12} sm={6} md={4}>
-          <ImageButton>
-            <Image
-              width="100%"
-              style={{
-                objectFit: "contain",
-              }}
-              src={process.env.REACT_APP_PORT + "/images/mastercard.png"}
-              alt="MasterCard Payment"
             />
           </ImageButton>
         </PaymentItem>

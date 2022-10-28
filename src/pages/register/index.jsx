@@ -227,7 +227,12 @@ const Register = () => {
           <Stack spacing={1}>
             <Typography>
               Already have an account?{" "}
-              <MuiLink to="/login" component={Link}>
+              <MuiLink
+                paddingBlock="6px"
+                paddingInline={1}
+                to="/login"
+                component={Link}
+              >
                 Log In
               </MuiLink>
             </Typography>

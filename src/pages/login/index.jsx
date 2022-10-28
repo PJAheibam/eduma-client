@@ -170,7 +170,15 @@ const Login = () => {
         </Stack>
         <Typography marginTop={3} color="text.secondary">
           Don't have any account?{" "}
-          <Button onClick={navigateToRegister}>Register here</Button>{" "}
+          <MuiLink
+            component={RrdLink}
+            to="/register"
+            state={{ from: location.state?.from }}
+            paddingInline="8px"
+            paddingBlock="6px"
+          >
+            Register here
+          </MuiLink>{" "}
         </Typography>
       </Paper>
     </Box>
