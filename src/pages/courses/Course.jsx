@@ -79,10 +79,8 @@ const Course = () => {
             {course.name}
           </Typography>
           <Typography color="text.secondary">{course.desc}</Typography>
-          {/* <Button sx={{ mt: 3, mx: "auto" }} size="small">
-            <img height={50} src={pdfDownload} alt="Download PDF" />
-          </Button> */}
           <PDFDownloadLink
+            style={{ marginLeft: "auto", marginRight: "auto" }}
             document={<DownloadPDF course={course} />}
             fileName="test"
           >

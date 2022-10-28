@@ -55,16 +55,6 @@ const styles = StyleSheet.create({
 });
 
 const DownloadPDF = ({ course }) => {
-  const test = false;
-  if (test)
-    return (
-      <Doc>
-        <Page>
-          <Text size="A4">Hello</Text>
-        </Page>
-      </Doc>
-    );
-
   return (
     <Doc>
       <Page size="A4" style={styles.page}>
