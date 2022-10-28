@@ -19,6 +19,7 @@ Eduma is a educational platform. We mainly focussed on software development sect
 - Logout
 - Private/Protected Route
 - Error handled in _sign in_ or _sign up_ page
+- Light and Dark Mode
 
 **This project is build using React Js**
 
