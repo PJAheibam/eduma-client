@@ -115,7 +115,7 @@ const Register = () => {
             xs: 0,
             sm: "6px",
           },
-          height: {
+          minHeight: {
             xs: "calc(100vh - 64px)",
             sm: "fit-content",
           },
